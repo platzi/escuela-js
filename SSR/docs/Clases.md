@@ -30,3 +30,19 @@ Clase 5.
   Integrando Webpack con Express
 
 > Modulo 2. Integrando Frontend
+
+Clase 6.
+  Sirviendo React desde Express
+    - Frontend entry
+    - Preparar reducers
+    - Sirviendo desde ruta
+
+Clase 7.
+  Redux Dev Tools
+
+Clase 8.
+  Sirviendo estilos
+
+Clase 9.
+  Integrando con React Router
+  

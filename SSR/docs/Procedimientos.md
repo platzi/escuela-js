@@ -30,4 +30,22 @@ Clase 5.
   - Integrando Webpack con Express
 
 Clase 6.
-  - 
+  - Crear componente dummy
+  - Crear anchor, initialState y rootReducer 
+  - Enviar html en la ruta
+    ```
+    res.send(`
+      <!doctype html>
+        <html>
+          <head>
+            <title>Platzi Video</title>
+            <link rel="stylesheet" href="assets/app.css" type="text/css"/>
+          </head>
+          <body>
+            <div id="app"></div>
+            <script src="assets/app.js" type="text/javascript"></script>
+            <script src="assets/vendor.js" type="text/javascript"></script>
+          </body>
+      </html>
+    `);
+    ```

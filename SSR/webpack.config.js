@@ -2,10 +2,11 @@ const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TransferWebpackPlugin = require('transfer-webpack-plugin');
+const autoprefixer = require("autoprefixer");
 
 module.exports = {
   devtool: 'cheap-source-map',
-  entry: 'src/frontend/index.js',
+  entry: ['webpack-hot-middleware/client', './src/frontend/index.js'],
   mode: 'development',
   output: {
     path: '/',
@@ -29,7 +30,7 @@ module.exports = {
         },
       },
       {
-        test: /\.scss$/,
+        test: /\.(css|sass|scss)$/,
         exclude: /node_modules/,
         use: [
           {
@@ -61,6 +62,9 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.sass'],
     modules: ['node_modules'],
+    alias: {
+      sass: path.resolve(__dirname, 'src/assets/sass'),
+    },
   },
   optimization: {
     splitChunks: {
@@ -87,8 +91,15 @@ module.exports = {
   plugins: [
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [
+          autoprefixer(),
+        ],
+      }
+    }),
     new TransferWebpackPlugin([
-      { from: 'statics' },
+      { from: 'assets' },
     ], path.resolve(__dirname, 'src')),
     new MiniCssExtractPlugin({
       filename: 'assets/app.css',
