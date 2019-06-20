@@ -53,6 +53,7 @@
     "dotenv": "8.0.0",
     "express": "4.17.1",
     "history": "4.9.0",
+    "ignore-styles": "5.0.1",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-hot-loader": "4.11.1",

@@ -1,5 +1,5 @@
 import React from 'react';
-import 'sass/index.sass';
+import '../../assets/sass/index.sass';
 
 const App = () => (
   <div className='App'>

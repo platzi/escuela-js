@@ -62,9 +62,6 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.sass'],
     modules: ['node_modules'],
-    alias: {
-      sass: path.resolve(__dirname, 'src/assets/sass'),
-    },
   },
   optimization: {
     splitChunks: {

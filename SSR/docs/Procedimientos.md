@@ -49,3 +49,29 @@ Clase 6.
       </html>
     `);
     ```
+
+Clase 7.
+  Redux Dev Tools
+
+Clase 8.
+  Sirviendo estilos
+
+Clase 9.
+  - Crear rutas
+
+Clase 10. 
+  ¿ Por que renderizar desde el servidor ?
+
+Clase 11. 
+  - Crear metodo de carga del React y las rutas
+  - Crear metodo de renderizado
+
+Clase 12.
+  - Enseñar a validar con el `typeof window !== 'undefined'`
+
+Clase 13.
+  - Agregar metodo hydrate
+
+Clase 14.
+  - Reemplazar initialState por preloadedState
+  - Hacer set del preloadedStateDesde el template

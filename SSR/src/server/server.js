@@ -3,6 +3,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import webpack from 'webpack';
+import main from './routes/main';
 
 dotenv.config();
 
@@ -47,22 +48,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get('*', (req, res) => {
-  res.send(`
-    <!doctype html>
-      <html>
-        <head>
-          <title>Platzi Video</title>
-          <link rel="stylesheet" href="assets/app.css" type="text/css"/>
-        </head>
-        <body>
-          <div id="app"></div>
-          <script src="assets/app.js" type="text/javascript"></script>
-          <script src="assets/vendor.js" type="text/javascript"></script>
-        </body>
-    </html>
-  `);
-});
+app.get('*', main);
 
 app.listen(PORT, err => {
   if (err) console.log(err);

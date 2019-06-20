@@ -1,4 +1,4 @@
-> Modulo 1. "Configurando Servidor"
+> Modulo 1. Configurando Servidor
 
 Clase 1.
 
@@ -45,4 +45,21 @@ Clase 8.
 
 Clase 9.
   Integrando con React Router
-  
+
+> Modulo 3. Server Side Rendering
+
+Clase 10. 
+  ¿ Por que renderizar desde el servidor ?
+
+Clase 11.
+  Renderizando desde el servidor
+
+Clase 12.
+  Validaciones en el server
+
+Clase 13.
+  Hydrate
+
+Clase 14.
+  Enviando estado de Redux
+
