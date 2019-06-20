@@ -75,3 +75,29 @@ Clase 13.
 Clase 14.
   - Reemplazar initialState por preloadedState
   - Hacer set del preloadedStateDesde el template
+
+Clase 15.
+  Instalar helmet
+
+Clase 16.
+  Validar en el entry
+
+Clase 17. 
+  - Compresion de assets
+  - Validacion en express
+  ```
+  app.get('*.js', (req, res, next) => {
+    req.url = req.url + '.gz';
+    res.set('Content-Encoding', 'gzip');
+    next();
+  });
+
+  app.get('*.css', (req, res, next) => {
+    req.url = req.url + '.gz';
+    res.set('Content-Encoding', 'gzip');
+    next();
+  });
+  ```
+
+Clase 18.
+  Preparando webpack para el server

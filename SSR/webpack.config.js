@@ -1,15 +1,21 @@
 const webpack = require('webpack');
 const path = require('path');
+const dotenv = require('dotenv');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TransferWebpackPlugin = require('transfer-webpack-plugin');
 const autoprefixer = require("autoprefixer");
+const CompressionPlugin = require('compression-webpack-plugin');
+
+dotenv.config();
 
 module.exports = {
-  devtool: 'cheap-source-map',
-  entry: ['webpack-hot-middleware/client', './src/frontend/index.js'],
-  mode: 'development',
+  devtool: process.env.NODE_ENV === 'production' ?
+    'cheap-module-eval-source-map' : 'cheap-source-map',
+  entry: './src/frontend/index.js',
+  mode: process.env.NODE_ENV ? process.env.NODE_ENV : 'development',
   output: {
-    path: '/',
+    path: process.env.NODE_ENV === 'production' ?
+      path.join(process.cwd(), './src/server/public') : '/',
     filename: 'assets/app.js',
     publicPath: '/',
   },
@@ -100,6 +106,10 @@ module.exports = {
     ], path.resolve(__dirname, 'src')),
     new MiniCssExtractPlugin({
       filename: 'assets/app.css',
+    }),
+    new CompressionPlugin({
+      test: /\.js$|\.css$/,
+      filename: '[path].gz'
     }),
   ],
 };

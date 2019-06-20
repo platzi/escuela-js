@@ -63,3 +63,16 @@ Clase 13.
 Clase 14.
   Enviando estado de Redux
 
+> Modulo 4. Entornos de trabajo
+
+  Clase 15. 
+    Validando nuestro servidor
+
+  Clase 16.
+    Validando el frontend
+  
+  Clase 17.
+    Compresion de nuestos assets
+
+  Clase 18.
+    Preparando webpack para el server

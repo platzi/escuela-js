@@ -9,10 +9,15 @@ import rootReducer from './reducers/rootReducer';
 import routes from './routes';
 
 if (typeof window !== 'undefined') {
+  let composeEnhancers;
+
+  if (process.env.NODE_ENV === 'production') composeEnhancers = compose;
+  else composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
   const preloadedState = window.__PRELOADED_STATE__;
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const store = createStore(rootReducer, preloadedState, composeEnhancers(applyMiddleware(thunk)));
   const history = createBrowserHistory();
+
   hydrate(
     <Provider store={store}>
       <Router history={history}>
