@@ -9,3 +9,25 @@ Clase 2.
       }
     ```
   - Integrar con dotenv
+
+Clase 3.
+  Configurando Webpack
+    - Configurar Eslint
+      - .eslintrc
+    - Configurar Babel
+      - .babelrc
+    - Configurar Sass
+    - Configurar Loaders de assets
+      - Url's
+      - Fonts
+
+Clase 4.
+  Vendors y Plugins
+    - Configurar Vendor file
+    - Configurar Plugins para HMR y Extraccion de assets  
+
+Clase 5.
+  - Integrando Webpack con Express
+
+Clase 6.
+  - 

@@ -1,3 +1,4 @@
+> Modulo 1. "Configurando Servidor"
 
 Clase 1.
 
@@ -14,3 +15,18 @@ Clase 2.
   Creando Proyecto Base
 
 Clase 3.
+  Preparando Webpack
+    - Eslint
+    - Babel
+    - Sass
+    - Assets
+
+Clase 4.
+  Plugins en Webpack
+    - Vendor File
+    - Plugins
+
+Clase 5.
+  Integrando Webpack con Express
+
+> Modulo 2. Integrando Frontend
