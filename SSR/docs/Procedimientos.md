@@ -101,3 +101,6 @@ Clase 17.
 
 Clase 18.
   Preparando webpack para el server
+
+Clase 19. 
+  Configurando hashes
