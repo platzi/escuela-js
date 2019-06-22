@@ -65,7 +65,7 @@ body {
 .main__description {
   color: white;
   font-size: 13px;
-  padding-left: 60px;
+  padding-left: 30px;
   padding-bottom: 80px;
 }
 
@@ -104,12 +104,12 @@ body {
   color: white;
   font-size: 13px;
   position: absolute;
-  padding-left: 60px;
+  padding-left: 30px;
 }
 
 .carousel {
   overflow: scroll;
-  padding-left: 60px;
+  padding-left: 30px;
   width: 100%;
   position: relative;
 }
@@ -201,10 +201,20 @@ body {
   display: flex;
   font-size: 13px;
   height: 100px;
-  padding-left: 60px;
   width: 100%;
 }
 
 .footer__link {
-  padding-right: 20px;
+  padding: 0px 20px 0px 30px;
+}
+
+@media only screen and (max-width: 600px) {
+  .main__description--title {
+    font-size: 30px;
+  }
+
+  .footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }

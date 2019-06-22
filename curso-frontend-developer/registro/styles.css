@@ -92,6 +92,7 @@ body {
   }
 
   .register__footer {
-    text-align: center;
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
