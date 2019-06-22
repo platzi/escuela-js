@@ -53,6 +53,7 @@ body {
 
 .main {
   background-image: url("https://images.pexels.com/photos/842548/pexels-photo-842548.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-position: center;
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -209,6 +210,10 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
+  .main {
+    height: 450px;
+  }
+
   .main__description--title {
     font-size: 30px;
   }
