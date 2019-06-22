@@ -1,0 +1,13 @@
+.container {
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 60px 68px 40px;
+  min-height: 600px;
+  width: 300px;
+}
+.container__form {
+  display: flex;
+  flex-direction: column;
+}

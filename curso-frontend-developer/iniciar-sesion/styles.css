@@ -1,0 +1,132 @@
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  background-color: black;
+  background-image: url("https://images.pexels.com/photos/707667/pexels-photo-707667.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+  background-size: cover;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0px 30px;
+}
+
+.login__header {
+  align-items: center;
+  background-color: transparent;
+  color: white;
+  display: flex;
+  height: 80px;
+  justify-content: space-between;
+  top: 0px;
+  width: 100%;
+}
+
+.login__header--title {
+  color: #95ca3e;
+  font-size: 30px;
+}
+
+.login__container {
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  min-height: 600px;
+  padding: 60px 68px 40px;
+  width: 300px;
+}
+
+.login__container--form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login__container--form label {
+  font-size: 13px;
+}
+
+.login__container--social-media > div {
+  align-items: center;
+  display: flex;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.login__container--social-media > div > img {
+  margin-right: 10px;
+  width: 30px;
+}
+
+.login__container--register {
+  font-size: 13px;
+}
+
+.login__container--register a {
+  color: white;
+}
+
+.remember-me {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.forgot {
+  color: white;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.forgot:hover {
+  text-decoration: underline;
+}
+
+.login__footer {
+  align-items: center;
+  color: white;
+  display: flex;
+  font-size: 13px;
+  height: 100px;
+  width: 100%;
+}
+
+.login__footer--link {
+  padding-right: 20px;
+}
+
+.input {
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  height: 50px;
+  margin-bottom: 20px;
+  padding: 0px 20px;
+}
+
+.button {
+  background-color: #e50914;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  height: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    background-image: none;
+  }
+
+  .login__footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
