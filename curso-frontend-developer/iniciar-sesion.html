@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <title>INICIAR SESIÓN</title>
+</head>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #141414;
+    background-image: url("https://images.pexels.com/photos/707667/pexels-photo-707667.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+    background-size: cover;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .login {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .header {
+    align-items: center;
+    background-color: transparent;
+    color: white;
+    display: flex;
+    height: 80px;
+    justify-content: space-between;
+    top: 0px;
+    width: 100%;
+  }
+  .header__item--title {
+    color: #95ca3e;
+    font-size: 30px;
+    padding-left: 30px;
+  }
+  .container {
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 4px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 60px 68px 40px;
+    min-height: 600px;
+    width: 300px;
+    justify-content: center;
+  }
+  .container__form {
+    display: flex;
+    flex-direction: column;
+  }
+  .container__form label {
+    margin-top: 50px;
+  }
+  .footer {
+    align-items: center;
+    color: white;
+    display: flex;
+    font-size: 13px;
+    height: 100px;
+    padding-left: 30px;
+    width: 100%;
+  }
+
+  .footer__link {
+    padding-right: 20px;
+  }
+</style>
+<body>
+  <div class="login">
+    <header class="header">
+      <h1 class="header__item--title">Platfix</h1>
+    </header>
+    <div class="container">
+      <h2>Inicia sesión</h2>
+      <form class="container__form">
+        <input type="text" placeholder="Correo">
+        <input type="password" placeholder="Contraseña">
+        <button>Iniciar sesión</button>
+        <label><input type="checkbox" id="cbox1" value="first_checkbox">Recuérdame</label>
+      </form>
+      <a href="">Olvidé mi contraseña</a>
+      <section>
+        <div><img src="https://img.icons8.com/nolan/64/000000/google-plus.png"> Inicia sesión con Google</div>
+        <div><img src="https://img.icons8.com/nolan/64/000000/twitter.png"> Inicia sesión con Twitter</div>
+      </section>
+      <p>No tienes ninguna cuenta <a href="">Regístrate</a></p>
+    </div>
+    <footer class="footer">
+      <a class="footer__link">Terminos de uso</a>
+      <a class="footer__link">Declaración de privacidad</a>
+      <a class="footer__link">Centro de ayuda</a>
+    </footer>
+  </div>
+</body>
+</html>
