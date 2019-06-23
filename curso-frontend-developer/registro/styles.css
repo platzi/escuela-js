@@ -91,6 +91,10 @@ body {
     background-image: none;
   }
 
+  .register__container {
+    padding: 0px;
+  }
+
   .register__footer {
     align-items: flex-start;
     flex-direction: column;
