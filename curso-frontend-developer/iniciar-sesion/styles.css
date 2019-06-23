@@ -127,6 +127,7 @@ body {
 
   .login__container {
     padding: 0px;
+    width: 100%;
   }
 
   .login__footer {
