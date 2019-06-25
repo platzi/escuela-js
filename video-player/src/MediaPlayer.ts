@@ -1,11 +1,17 @@
-interface PlayerConfig {}
+import MediaPlayerPlugin from "./plugins/MediaPlayerPlugin";
 
-export default class Player {
+interface MediaPlayerConfig {
+  plugins?: Array<MediaPlayerPlugin>;
+}
+
+export default class MediaPlayer {
   private media: HTMLMediaElement;
 
-  constructor(el: HTMLMediaElement) {
+  constructor(el: HTMLMediaElement, config: MediaPlayerConfig = {}) {
     this.media = el;
+
     this.init();
+    config.plugins && this.initPlugins(config.plugins);
   }
 
   private init() {
@@ -20,5 +26,11 @@ export default class Player {
 
     // Place the media element inside the mediaelement container
     container.querySelector(".mediaelement").appendChild(this.media);
+  }
+
+  private initPlugins(plugins: MediaPlayerPlugin[]) {
+    plugins.forEach(plugin => {
+      plugin.build(this, this.media);
+    });
   }
 }

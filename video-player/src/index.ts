@@ -1,3 +1,4 @@
-import Player from "./Player";
+import MediaPlayer from "./MediaPlayer";
+import AdsPlugin from "./plugins/Ads";
 
-export { Player };
+export { MediaPlayer, AdsPlugin };
