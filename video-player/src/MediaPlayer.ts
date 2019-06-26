@@ -5,7 +5,9 @@ interface MediaPlayerConfig {
 }
 
 export default class MediaPlayer {
+  private container: HTMLElement;
   private media: HTMLMediaElement;
+  private layers: HTMLElement;
 
   constructor(el: HTMLMediaElement, config: MediaPlayerConfig = {}) {
     this.media = el;
@@ -15,22 +17,31 @@ export default class MediaPlayer {
   }
 
   private init() {
-    let container = document.createElement("div");
-    container.className = this.media.className;
-    container.innerHTML = `
-      <div class="mediaelement"></div>
+    this.container = document.createElement("div");
+    this.container.className = `pvjs ${this.media.className}`;
+    this.container.innerHTML = `
+      <div class="pvjs-mediaelement"></div>
+      <div class="pvjs-layers"></div>
     `;
 
+    this.layers = this.container.querySelector(".pvjs-layers");
+
     // Move container next to the media element
-    this.media.parentNode.insertBefore(container, this.media);
+    this.media.parentNode.insertBefore(this.container, this.media);
 
     // Place the media element inside the mediaelement container
-    container.querySelector(".mediaelement").appendChild(this.media);
+    this.container.querySelector(".pvjs-mediaelement").appendChild(this.media);
   }
 
   private initPlugins(plugins: MediaPlayerPlugin[]) {
     plugins.forEach(plugin => {
       plugin.build(this, this.media);
     });
+  }
+
+  requestNewLayer() {
+    let layer = document.createElement("div");
+    this.layers.appendChild(layer);
+    return layer;
   }
 }

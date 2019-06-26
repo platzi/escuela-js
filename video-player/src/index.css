@@ -1,0 +1,12 @@
+.pvjs {
+  position: relative;
+}
+
+.pvjs-mediaelement {
+}
+
+.pvjs-layers {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+}

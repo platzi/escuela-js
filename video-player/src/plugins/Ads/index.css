@@ -1,0 +1,52 @@
+.pvjs-ad {
+  max-width: 460px;
+  width: 100%;
+  height: 60px;
+  margin: 0 auto 0.1rem;
+  padding: 2px;
+  background: white;
+  position: relative;
+}
+
+.pvjs-ad a {
+  display: flex;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.pvjs-ad__close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+  border: 0;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjMDAwMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3BhY2U9InByZXNlcnZlIiBzdHlsZT0ic2hhcGUtcmVuZGVyaW5nOmdlb21ldHJpY1ByZWNpc2lvbjt0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247aW1hZ2UtcmVuZGVyaW5nOm9wdGltaXplUXVhbGl0eTsiIHZpZXdCb3g9IjAgMCAwLjMzMDI4IDAuMzMwMjgiIHg9IjBweCIgeT0iMHB4IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj4KICAgCiAgICAuZmlsMCB7ZmlsbDojMDAwMDAwO2ZpbGwtcnVsZTpub256ZXJvfQogICAKICA8L3N0eWxlPjwvZGVmcz48Zz48cGF0aCBjbGFzcz0iZmlsMCIgZD0iTTAuMzMwMjc2IDBsMy45MDA5M2UtMDA2IDAuMzMwMjggLTAuMzMwMjggMCAwIC0wLjMzMDI4IDAuMzMwMjc2IDB6bS0wLjI2MDE4NCAwLjI4Mzk0OWwwLjA5NTA1MDEgLTAuMDk1MDUwMSAwLjA5NTA1MDEgMC4wOTUwNTAxYzAuMDE1Nzg3MSwwLjAxNTc5ODggMC4wMzk2MTc5LC0wLjAwNzkwMzI5IDAuMDIzNzU2NywtMC4wMjM3NjA2bC0wLjA5NTA0NjIgLTAuMDk1MDUwMSAwLjA5NTA0NjIgLTAuMDk1MDQ2MmMwLjAxNTYxMTUsLTAuMDE1NjExNSAtMC4wMDgxNDkwNSwtMC4wMzkzNjgyIC0wLjAyMzc1NjcsLTAuMDIzNzYwNmwtMC4wOTUwNTAxIDAuMDk1MDUwMSAtMC4wOTUwNTAxIC0wLjA5NTA1MDFjLTAuMDE1Nzk4OCwtMC4wMTU3OTg4IC0wLjAzOTYxMDEsMC4wMDc5MDcxOSAtMC4wMjM3NTY3LDAuMDIzNzYwNmwwLjA5NTA1MDEgMC4wOTUwNDYyIC0wLjA5NTA1MDEgMC4wOTUwNTAxYy0wLjAxNTMwMzQsMC4wMTUzMDM0IDAuMDA4MTE3ODQsMC4wMzkzOTk0IDAuMDIzNzU2NywwLjAyMzc2MDZ6bTAuMjM2MzczIC0wLjI2MDEzNGwtMC4yODI2NSAwIDAgMC4yODI2NSAwLjI4MjY1IDAgMCAtMC4yODI2NXoiPjwvcGF0aD48L2c+PC9zdmc+");
+  background-size: cover;
+  cursor: pointer;
+}
+
+.pvjs-ad__image {
+  height: 56px;
+  width: 56px;
+}
+
+.pvjs-ad__content {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 6px;
+}
+
+.pvjs-ad__content > p {
+  margin-top: 0;
+}
+
+.pvjs-ad__content__title {
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.pvjs-ad__content__message {
+}
