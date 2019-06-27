@@ -9,7 +9,7 @@ import '../styles/App.scss';
 
 const data = {
   featureVideo: {
-      "id": 30342,
+    "id": 30342,
     "slug": "stargate-origins",
     "name": "Stargate Atlantis",
     "type": "Scripted",
@@ -21,7 +21,7 @@ const data = {
   },
   mylist: [
     {
-      "id": 30234,
+      "id": 37234,
       "slug": "stargate-origins",
       "name": "Breaking Bad",
       "type": "Scripted",
@@ -32,7 +32,7 @@ const data = {
       "image": "https://static.tvmaze.com/uploads/images/original_untouched/0/2400.jpg"
     },
     {
-      "id": 30234,
+      "id": 36234,
       "slug": "once-upon-a-time-in-wonderland",
       "name": "Once Upon a Time in Wonderland",
       "type": "Scripted",
@@ -43,7 +43,7 @@ const data = {
       "image": "https://static.tvmaze.com/uploads/images/original_untouched/73/183661.jpg"
     },
     {
-      "id": 32634,
+      "id": 34634,
       "slug": "stargate-origins",
       "name": "Stargate Origins",
       "type": "Scripted",
@@ -56,7 +56,7 @@ const data = {
   ],
   trends: [
     {
-      "id": 30234,
+      "id": 31234,
       "slug": "stargate-origins",
       "name": "Breaking Bad",
       "type": "Scripted",
@@ -67,7 +67,7 @@ const data = {
       "image": "https://static.tvmaze.com/uploads/images/original_untouched/0/2400.jpg"
     },
     {
-      "id": 30234,
+      "id": 32234,
       "slug": "once-upon-a-time-in-wonderland",
       "name": "Once Upon a Time in Wonderland",
       "type": "Scripted",
@@ -78,7 +78,7 @@ const data = {
       "image": "https://static.tvmaze.com/uploads/images/original_untouched/73/183661.jpg"
     },
     {
-      "id": 32634,
+      "id": 32624,
       "slug": "stargate-origins",
       "name": "Stargate Origins",
       "type": "Scripted",
@@ -91,7 +91,7 @@ const data = {
   ],
   originals: [
     {
-      "id": 30234,
+      "id": 30231,
       "slug": "stargate-origins",
       "name": "Breaking Bad",
       "type": "Scripted",
@@ -102,7 +102,7 @@ const data = {
       "image": "https://static.tvmaze.com/uploads/images/original_untouched/0/2400.jpg"
     },
     {
-      "id": 30234,
+      "id": 30232,
       "slug": "once-upon-a-time-in-wonderland",
       "name": "Once Upon a Time in Wonderland",
       "type": "Scripted",
