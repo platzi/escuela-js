@@ -1,3 +1,5 @@
+@import "./Vars.scss";
+
 .main {
   background-position: center;
   background-size: cover;
@@ -17,7 +19,7 @@
 }
 
 .main__description--title {
-  font-family: 'Knewave', cursive;
+  font-family: $theme-font-2;
   font-size: 50px;
   margin: 0px;
 }
@@ -32,7 +34,7 @@
   display: inline-flex;
   font-size: 10px;
   height: 40px;
-  margin-right: 5px; 
+  margin-right: 5px;
   padding: 0px 10px;
 }
 
