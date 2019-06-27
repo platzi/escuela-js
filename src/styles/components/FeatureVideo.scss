@@ -1,0 +1,48 @@
+.main {
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 700px;
+  justify-content: flex-end;
+  margin-bottom: -120px;
+  width: 100%;
+}
+
+.main__description {
+  color: white;
+  font-size: 13px;
+  padding-left: 30px;
+  padding-bottom: 80px;
+}
+
+.main__description--title {
+  font-family: 'Knewave', cursive;
+  font-size: 50px;
+  margin: 0px;
+}
+
+.main__description--button {
+  align-items: center;
+  background-color: rgba(51, 51, 51, .5);
+  border: transparent;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 10px;
+  height: 40px;
+  margin-right: 5px; 
+  padding: 0px 10px;
+}
+
+.main__description--button span {
+  padding-left: 10px;
+}
+
+.main__background {
+  align-self: flex-end;
+  background-image: linear-gradient(to bottom,rgba(20,20,20,0) 0,rgba(20,20,20,.15) 15%,rgba(20,20,20,.35) 29%,rgba(20,20,20,.58) 44%,#141414 68%,#141414 100%);
+  height: 100px;
+  width: 100%;
+}

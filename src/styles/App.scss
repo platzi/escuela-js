@@ -1,0 +1,11 @@
+@import "./Vars.scss";
+
+body {
+  margin: 0;
+  font-family: $theme-font;
+  background-color: $gb-color;
+}
+
+* {
+  box-sizing: border-box;
+}

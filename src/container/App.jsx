@@ -2,31 +2,156 @@ import React from 'react';
 import Header from '../components/Header';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
-import Category from '../components/Category';
+import Categories from '../components/Categories';
 import Footer from '../components/Footer';
+import FeatureVideo from '../components/FeatureVideo';
+import '../styles/App.scss';
+
+const data = {
+  featureVideo: {
+      "id": 30342,
+    "slug": "stargate-origins",
+    "name": "Stargate Atlantis",
+    "type": "Scripted",
+    "language": "English",
+    "year": 2004,
+    "contentRating": '16+',
+    "duration": 206,
+    "image": "http://static.tvmaze.com/uploads/images/original_untouched/1/3059.jpg"
+  },
+  mylist: [
+    {
+      "id": 30234,
+      "slug": "stargate-origins",
+      "name": "Breaking Bad",
+      "type": "Scripted",
+      "language": "English",
+      "year": 2008,
+      "contentRating": '16+',
+      "duration": 96,
+      "image": "http://static.tvmaze.com/uploads/images/original_untouched/0/2400.jpg"
+    },
+    {
+      "id": 30234,
+      "slug": "once-upon-a-time-in-wonderland",
+      "name": "Once Upon a Time in Wonderland",
+      "type": "Scripted",
+      "language": "English",
+      "year": 2013,
+      "contentRating": '18+',
+      "duration": 109,
+      "image": "http://static.tvmaze.com/uploads/images/original_untouched/73/183661.jpg"
+    },
+    {
+      "id": 32634,
+      "slug": "stargate-origins",
+      "name": "Stargate Origins",
+      "type": "Scripted",
+      "language": "English",
+      "year": 2018,
+      "contentRating": '16+',
+      "duration": 116,
+      "image": "http://static.tvmaze.com/uploads/images/medium_portrait/146/365955.jpg"
+    }
+  ],
+  trends: [
+    {
+      "id": 30234,
+      "slug": "stargate-origins",
+      "name": "Breaking Bad",
+      "type": "Scripted",
+      "language": "English",
+      "year": 2008,
+      "contentRating": '16+',
+      "duration": 96,
+      "image": "http://static.tvmaze.com/uploads/images/original_untouched/0/2400.jpg"
+    },
+    {
+      "id": 30234,
+      "slug": "once-upon-a-time-in-wonderland",
+      "name": "Once Upon a Time in Wonderland",
+      "type": "Scripted",
+      "language": "English",
+      "year": 2013,
+      "contentRating": '18+',
+      "duration": 109,
+      "image": "http://static.tvmaze.com/uploads/images/original_untouched/73/183661.jpg"
+    },
+    {
+      "id": 32634,
+      "slug": "stargate-origins",
+      "name": "Stargate Origins",
+      "type": "Scripted",
+      "language": "English",
+      "year": 2018,
+      "contentRating": '16+',
+      "duration": 116,
+      "image": "http://static.tvmaze.com/uploads/images/medium_portrait/146/365955.jpg"
+    }
+  ],
+  originals: [
+    {
+      "id": 30234,
+      "slug": "stargate-origins",
+      "name": "Breaking Bad",
+      "type": "Scripted",
+      "language": "English",
+      "year": 2008,
+      "contentRating": '16+',
+      "duration": 96,
+      "image": "http://static.tvmaze.com/uploads/images/original_untouched/0/2400.jpg"
+    },
+    {
+      "id": 30234,
+      "slug": "once-upon-a-time-in-wonderland",
+      "name": "Once Upon a Time in Wonderland",
+      "type": "Scripted",
+      "language": "English",
+      "year": 2013,
+      "contentRating": '18+',
+      "duration": 109,
+      "image": "http://static.tvmaze.com/uploads/images/original_untouched/73/183661.jpg"
+    },
+    {
+      "id": 32634,
+      "slug": "stargate-origins",
+      "name": "Stargate Origins",
+      "type": "Scripted",
+      "language": "English",
+      "year": 2018,
+      "contentRating": '16+',
+      "duration": 116,
+      "image": "http://static.tvmaze.com/uploads/images/medium_portrait/146/365955.jpg"
+    }
+  ]
+}
 
 const App = () => (
   <div className="App">
     <Header />
-
-    <Category title="Mi lista">
+    <FeatureVideo {...data.featureVideo} />
+    <Categories title="Mi lista">
       <Carousel>
-        <CarouselItem />
+        {data.mylist.map(item =>
+          <CarouselItem key={item.id} {...item} />
+        )}
       </Carousel>
-    </Category>
-
-    <Category title="Tendencias">
+    </Categories>
+    <Categories title="Tendencias">
       <Carousel>
-        <CarouselItem />
+        {data.trends.map(item =>
+          <CarouselItem key={item.id} {...item} />
+        )}
       </Carousel>
-    </Category>
-
-    <Category title="Originales de Platfix">
+    </Categories>
+    <Categories title="Originales de Platfix">
       <Carousel>
-        <CarouselItem />
-      </Carousel>
-    </Category>
 
+        {data.originals.map(item =>
+          <CarouselItem key={item.id} {...item} />
+        )}
+      </Carousel>
+    </Categories>
     <Footer />
   </div>
 );

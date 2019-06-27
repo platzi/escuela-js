@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/components/Header.scss';
 
 const Header = () => (
   <div>
@@ -36,7 +37,11 @@ const Header = () => (
             </g>
           </g>
         </svg>
-        <input type="text" className="header__input-container--text" placeholder="Buscar..." />
+        <input
+          type="text"
+          className="header__input-container--text"
+          placeholder="Buscar..."
+        />
       </div>
     </header>
   </div>

@@ -1,20 +1,35 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import '../styles/components/CarouselItem.scss';
+import playIcon from '../static/play.png';
 
-const CarouselItem = (props) => (
+const CarouselItem = ({ image, name, year, contentRating, duration }) => (
   <div className="carousel-item">
-    <img className="carousel-item__img" src={props.image} alt="" />
+    <img className="carousel-item__img" src={image} alt="" />
     <div className="carousel-item__details">
-      <img className="carousel-item__details--img" src="play.png" alt="play-icon" />
-      <p className="carousel-item__details--title">{props.title}</p>
+      <img
+        className="carousel-item__details--img"
+        src={playIcon}
+        alt="play-icon"
+      />
+      <p className="carousel-item__details--title">{name}</p>
       <p className="carousel-item__details--subtitle">
-        {props.year}
+        {year}
         {' '}
-        {props.contetType}
+        {contentRating}
         {' '}
-        {props.duration}
+        {duration}
       </p>
     </div>
   </div>
 );
+
+CarouselItem.propTypes = {
+  name: PropTypes.string,
+  year: PropTypes.number,
+  contentRating: PropTypes.string,
+  duration: PropTypes.number,
+  image: PropTypes.string,
+};
 
 export default CarouselItem;

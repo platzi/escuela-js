@@ -22,7 +22,8 @@
       "error",
       "absolute-first"
     ],
-    "import/newline-after-import": "error"
+    "import/newline-after-import": "error",
+    "react/require-default-props": 0
   },
   "globals": {
     "window": true,
