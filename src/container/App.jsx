@@ -17,7 +17,7 @@ const data = {
     "year": 2004,
     "contentRating": '16+',
     "duration": 206,
-    "image": "http://static.tvmaze.com/uploads/images/original_untouched/1/3059.jpg"
+    "image": "https://static.tvmaze.com/uploads/images/original_untouched/1/3059.jpg"
   },
   mylist: [
     {
@@ -29,7 +29,7 @@ const data = {
       "year": 2008,
       "contentRating": '16+',
       "duration": 96,
-      "image": "http://static.tvmaze.com/uploads/images/original_untouched/0/2400.jpg"
+      "image": "https://static.tvmaze.com/uploads/images/original_untouched/0/2400.jpg"
     },
     {
       "id": 30234,
@@ -40,7 +40,7 @@ const data = {
       "year": 2013,
       "contentRating": '18+',
       "duration": 109,
-      "image": "http://static.tvmaze.com/uploads/images/original_untouched/73/183661.jpg"
+      "image": "https://static.tvmaze.com/uploads/images/original_untouched/73/183661.jpg"
     },
     {
       "id": 32634,
@@ -51,7 +51,7 @@ const data = {
       "year": 2018,
       "contentRating": '16+',
       "duration": 116,
-      "image": "http://static.tvmaze.com/uploads/images/medium_portrait/146/365955.jpg"
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/146/365955.jpg"
     }
   ],
   trends: [
@@ -64,7 +64,7 @@ const data = {
       "year": 2008,
       "contentRating": '16+',
       "duration": 96,
-      "image": "http://static.tvmaze.com/uploads/images/original_untouched/0/2400.jpg"
+      "image": "https://static.tvmaze.com/uploads/images/original_untouched/0/2400.jpg"
     },
     {
       "id": 30234,
@@ -75,7 +75,7 @@ const data = {
       "year": 2013,
       "contentRating": '18+',
       "duration": 109,
-      "image": "http://static.tvmaze.com/uploads/images/original_untouched/73/183661.jpg"
+      "image": "https://static.tvmaze.com/uploads/images/original_untouched/73/183661.jpg"
     },
     {
       "id": 32634,
@@ -86,7 +86,7 @@ const data = {
       "year": 2018,
       "contentRating": '16+',
       "duration": 116,
-      "image": "http://static.tvmaze.com/uploads/images/medium_portrait/146/365955.jpg"
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/146/365955.jpg"
     }
   ],
   originals: [
@@ -99,7 +99,7 @@ const data = {
       "year": 2008,
       "contentRating": '16+',
       "duration": 96,
-      "image": "http://static.tvmaze.com/uploads/images/original_untouched/0/2400.jpg"
+      "image": "https://static.tvmaze.com/uploads/images/original_untouched/0/2400.jpg"
     },
     {
       "id": 30234,
@@ -110,7 +110,7 @@ const data = {
       "year": 2013,
       "contentRating": '18+',
       "duration": 109,
-      "image": "http://static.tvmaze.com/uploads/images/original_untouched/73/183661.jpg"
+      "image": "https://static.tvmaze.com/uploads/images/original_untouched/73/183661.jpg"
     },
     {
       "id": 32634,
@@ -121,7 +121,7 @@ const data = {
       "year": 2018,
       "contentRating": '16+',
       "duration": 116,
-      "image": "http://static.tvmaze.com/uploads/images/medium_portrait/146/365955.jpg"
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/146/365955.jpg"
     }
   ]
 }
