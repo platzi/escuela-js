@@ -1,128 +1,54 @@
 import MediaPlayerPlugin from "../MediaPlayerPlugin";
 import MediaPlayer from "../../MediaPlayer";
 
-interface AdDescriptor {
+interface Ad {
+  getPlayed: () => boolean;
+  play: (player: MediaPlayer) => void;
+  stop: () => void;
+}
+
+enum AdType {
+  Classic = "Classic",
+  Video = "Video"
+}
+
+type AdDescriptor = ClassicAdDescriptor | VideoAdDescriptor;
+
+interface ClassicAdDescriptor {
+  type: AdType.Classic;
   url: string;
   imageURL: string;
   title: string;
   message: string;
 }
 
-interface AdsPluginConfig {
-  firstAdTimeInSeconds: number;
-  adIntervalInSeconds: number;
+interface VideoAdDescriptor {
+  type: AdType.Video;
+  src: string;
 }
 
-export default class AdsPlugin implements MediaPlayerPlugin {
-  private player: MediaPlayer;
-  private media: HTMLMediaElement;
-  private ads: {};
-  private config: AdsPluginConfig;
-
-  constructor(private ad: AdDescriptor, config?: {}) {
-    this.config = Object.assign(
-      {},
-      {
-        firstAdTimeInSeconds: 0,
-        adIntervalInSeconds: 20
-      },
-      config
-    );
+class ClassicAdView {
+  private ad: ClassicAdDescriptor;
+  constructor(ad: ClassicAdDescriptor) {
+    this.ad = ad;
   }
 
-  build(player: MediaPlayer, media: HTMLMediaElement) {
-    this.player = player;
-    this.media = media;
-    this.ads = {};
-
-    if (Number.isNaN(this.media.duration)) {
-      this.media.addEventListener(
-        "loadedmetadata",
-        () => {
-          this.build(player, this.media);
-        },
-        {
-          once: true
-        }
-      );
-
-      return;
-    }
-    // Do not display ads for media shorter than N seconds;
-    if (this.media.duration < this.config.firstAdTimeInSeconds + 5) {
-      return;
-    }
-
-    for (
-      let seconds = this.config.firstAdTimeInSeconds;
-      seconds < this.media.duration;
-      seconds += this.config.adIntervalInSeconds
-    ) {
-      this.ads[seconds] = {
-        ...this.ad,
-        shown: false
-      };
-    }
-
-    this.media.addEventListener("timeupdate", this.handleTimeUpdate.bind(this));
-  }
-
-  private handleTimeUpdate() {
-    let ad = this.findAd(this.media.currentTime);
-
-    if (ad && !ad.shown) {
-      this.displayAd(ad);
-    }
-  }
-
-  private findAd(timeInSeconds: number) {
-    if (timeInSeconds < this.config.firstAdTimeInSeconds) {
-      return;
-    }
-
-    let index =
-      timeInSeconds -
-      ((timeInSeconds - this.config.firstAdTimeInSeconds) %
-        this.config.adIntervalInSeconds);
-
-    return this.ads[index];
-  }
-
-  private displayAd(ad) {
-    ad.shown = true;
-    new Ad(ad).render(this.player.requestNewLayer());
-  }
-}
-
-class Ad implements AdDescriptor {
-  url: string;
-  imageURL: string;
-  title: string;
-  message: string;
-
-  constructor(ad: AdDescriptor) {
-    this.url = ad.url;
-    this.imageURL = ad.imageURL;
-    this.title = ad.title;
-    this.message = ad.message;
-  }
-
-  render(mountNode: ChildNode) {
+  render(): ChildNode {
     const container = document.createElement("div");
     container.className = "pvjs-ad";
     container.innerHTML = `
       <button class="pvjs-ad__close-button" aria-label="Close"></button>
-      <a href="${this.url}" target="__blank">
-        <img class="pvjs-ad__image" src="${this.imageURL}" />
+      <a href="${this.ad.url}" target="__blank">
+        <img class="pvjs-ad__image" src="${this.ad.imageURL}" />
         <div class="pvjs-ad__content">
-          <p class="pvjs-ad__content__title">${this.title}</p>
-          <p class="pvjs-ad__content__message">${this.message}</p>
+          <p class="pvjs-ad__content__title">${this.ad.title}</p>
+          <p class="pvjs-ad__content__message">${this.ad.message}</p>
         </div>
       </a>
     `;
 
     let intervalId = setInterval(() => {
-      // container.remove();
+      container.remove();
     }, 5000);
 
     container.querySelector("button").addEventListener(
@@ -134,6 +60,167 @@ class Ad implements AdDescriptor {
       { once: true }
     );
 
-    mountNode.replaceWith(container);
+    return container;
   }
+}
+
+class ClassicAd implements Ad {
+  private ad: ClassicAdDescriptor;
+  private played: boolean;
+  private node: ChildNode;
+
+  constructor(ad: ClassicAdDescriptor) {
+    this.ad = ad;
+  }
+
+  getPlayed() {
+    return this.played;
+  }
+
+  play(player: MediaPlayer) {
+    this.played = true;
+    let layer = player.requestNewLayer();
+
+    let view = new ClassicAdView(this.ad);
+    this.node = view.render();
+    layer.replaceWith(this.node);
+  }
+
+  stop() {
+    if (this.node) {
+      this.node.remove();
+    }
+  }
+}
+
+class VideoAdView {
+  private ad: VideoAdDescriptor;
+  private player: MediaPlayer;
+
+  constructor(ad: VideoAdDescriptor, player: MediaPlayer) {
+    this.ad = ad;
+    this.player = player;
+  }
+
+  render(): ChildNode {
+    const container = document.createElement("div");
+    container.className = "pvjs-video-ad";
+    container.innerHTML = `
+      <video autoplay class="pvjs-videoad__video">
+        <source src="${this.ad.src}" />
+      </video>
+      <button class="pvjs-videoad__skip-button" disabled>You can skip to video in 5</button>
+    `;
+
+    this.player.getMedia().pause();
+    let adVideo = container.querySelector("video");
+    adVideo.addEventListener(
+      "ended",
+      event => {
+        container.remove();
+        this.player.getMedia().play();
+      },
+      { once: true }
+    );
+
+    return container;
+  }
+}
+
+class VideoAd implements Ad {
+  private ad: VideoAdDescriptor;
+  private played: boolean;
+  private node: ChildNode;
+
+  constructor(ad: VideoAdDescriptor) {
+    this.ad = ad;
+  }
+
+  getPlayed() {
+    return this.played;
+  }
+
+  play(player: MediaPlayer) {
+    this.played = true;
+
+    let view = new VideoAdView(this.ad, player);
+    this.node = view.render();
+
+    let layer = player.requestNewLayer();
+    layer.replaceWith(this.node);
+  }
+
+  stop() {
+    if (this.node) {
+      this.node.remove();
+    }
+  }
+}
+
+class AdsPlaylist {
+  private ads: Ad[];
+  private player: MediaPlayer;
+
+  constructor(ads: AdDescriptor[]) {
+    this.ads = ads
+      .sort((a, b) => {
+        if (a.type === AdType.Video) {
+          return -1;
+        }
+        if (b.type === AdType.Video) {
+          return 1;
+        }
+        return 0;
+      })
+      .map(ad => {
+        switch (ad.type) {
+          case AdType.Classic:
+            return new ClassicAd(ad as ClassicAdDescriptor);
+          case AdType.Video:
+            return new VideoAd(ad as VideoAdDescriptor);
+          default:
+            throw new Error("Unknown ad type.");
+        }
+      });
+  }
+
+  setPlayer(player: MediaPlayer) {
+    this.player = player;
+  }
+
+  getAd(timeInSeconds: number): Ad {
+    let progressPercent = timeInSeconds / this.player.getMedia().duration;
+    let adIndex = Math.round(progressPercent * this.ads.length);
+    return this.ads[adIndex];
+  }
+}
+
+export default class AdsPlugin implements MediaPlayerPlugin {
+  private player: MediaPlayer;
+  private playlist: AdsPlaylist;
+
+  constructor(ads: AdDescriptor[]) {
+    this.playlist = new AdsPlaylist(ads);
+  }
+
+  run(player: MediaPlayer): void {
+    this.player = player;
+    this.playlist.setPlayer(this.player);
+
+    let media = this.player.getMedia();
+    media.addEventListener("timeupdate", this.handleTimeUpdate);
+  }
+
+  async kill(): Promise<any> {
+    let media = this.player.getMedia();
+    media.removeEventListener("timeupdate", this.handleTimeUpdate);
+  }
+
+  private handleTimeUpdate = event => {
+    let media = event.target as HTMLMediaElement;
+    let ad = this.playlist.getAd(media.currentTime);
+    if (!ad.getPlayed()) {
+      ad.play(this.player);
+    }
+  };
 }

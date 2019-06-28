@@ -20,8 +20,8 @@ export default class MediaPlayer {
     this.container = document.createElement("div");
     this.container.className = `pvjs ${this.media.className}`;
     this.container.innerHTML = `
-      <div class="pvjs-mediaelement"></div>
-      <div class="pvjs-layers"></div>
+    <div class="pvjs-mediaelement"></div>
+    <div class="pvjs-layers"></div>
     `;
 
     this.layers = this.container.querySelector(".pvjs-layers");
@@ -35,8 +35,12 @@ export default class MediaPlayer {
 
   private initPlugins(plugins: MediaPlayerPlugin[]) {
     plugins.forEach(plugin => {
-      plugin.build(this, this.media);
+      plugin.run(this);
     });
+  }
+
+  getMedia() {
+    return this.media;
   }
 
   requestNewLayer() {
