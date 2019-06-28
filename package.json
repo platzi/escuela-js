@@ -26,7 +26,8 @@
     "react-dom": "^16.8.6",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",
-    "webpack-dev-server": "^3.7.1"
+    "webpack-dev-server": "^3.7.1",
+    "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
