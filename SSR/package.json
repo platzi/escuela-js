@@ -8,7 +8,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start:dev": "nodemon src/server/index.js --exec babel-node --plugins transform-class-properties --ignore components --progress"
+    "start:dev": "nodemon src/server/index.js --exec babel-node --plugins transform-class-properties --ignore components --progress",
+    "build": "webpack-cli --config webpack.config.js --colors"
   },
   "devDependencies": {
     "@babel/node": "7.4.5",
@@ -64,6 +65,7 @@
     "react-router-config": "5.0.1",
     "react-router-dom": "5.0.1",
     "redux": "4.0.1",
-    "redux-thunk": "2.3.0"
+    "redux-thunk": "2.3.0",
+    "webpack-cli": "^3.3.5"
   }
 }

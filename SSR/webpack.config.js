@@ -3,7 +3,7 @@ const path = require('path');
 const dotenv = require('dotenv');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TransferWebpackPlugin = require('transfer-webpack-plugin');
-const autoprefixer = require("autoprefixer");
+const autoprefixer = require('autoprefixer');
 const CompressionPlugin = require('compression-webpack-plugin');
 
 dotenv.config();
@@ -44,20 +44,19 @@ module.exports = {
           },
           'css-loader',
           'postcss-loader',
-          'sass-loader'
+          'sass-loader',
         ],
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|gif|jpg)$/,
         use: [
           {
-            loader: 'url-loader',
+            loader: 'file-loader',
             options: {
-              limit: 8192,
-              mimetype: 'image/png',
-            }
-          }
-        ]
+              name: 'assets/[hash].[ext]',
+            },
+          },
+        ],
       },
       {
         test: /(\.eot|\.woff|\.woff2|\.ttf|\.svg|\.png|\.jpg|\.gif)$/,
@@ -83,9 +82,7 @@ module.exports = {
           enforce: true,
           test(module, chunks) {
             const name = module.nameForCondition && module.nameForCondition();
-            return chunks.some(chunk => {
-              return chunk.name !== 'vendors' && /[\\/]node_modules[\\/]/.test(name);
-            });
+            return chunks.some(chunk => chunk.name !== 'vendors' && /[\\/]node_modules[\\/]/.test(name));
           },
         },
       },
@@ -99,7 +96,7 @@ module.exports = {
         postcss: [
           autoprefixer(),
         ],
-      }
+      },
     }),
     new TransferWebpackPlugin([
       { from: 'assets' },
@@ -109,7 +106,7 @@ module.exports = {
     }),
     new CompressionPlugin({
       test: /\.js$|\.css$/,
-      filename: '[path].gz'
+      filename: '[path].gz',
     }),
   ],
 };

@@ -24,6 +24,6 @@ if (typeof window !== 'undefined') {
         {routes}
       </Router>
     </Provider>,
-    document.getElementById('app')
+    document.getElementById('app'),
   );
 }

@@ -13,7 +13,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(`${__dirname}/public`));
 
 if (ENV === 'development') {
   console.log('Loading Development Config');
@@ -21,9 +21,8 @@ if (ENV === 'development') {
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
   const compiler = webpack(webPackConfig);
-  console.log(webPackConfig.output)
   const serverConfig = {
-    contentBase: 'http://localhost:' + PORT,
+    contentBase: `http://localhost:${PORT}`,
     port: PORT,
     quiet: false,
     noInfo: true,
@@ -46,7 +45,7 @@ if (ENV === 'development') {
   app.disable('x-powered-by');
 }
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,X-CSRFToken');
@@ -55,20 +54,20 @@ app.use(function (req, res, next) {
 });
 
 app.get('*.js', (req, res, next) => {
-  req.url = req.url + '.gz';
+  req.url = `${req.url}.gz`;
   res.set('Content-Encoding', 'gzip');
   next();
 });
 
 app.get('*.css', (req, res, next) => {
-  req.url = req.url + '.gz';
+  req.url = `${req.url}.gz`;
   res.set('Content-Encoding', 'gzip');
   next();
 });
 
 app.get('*', main);
 
-app.listen(PORT, err => {
+app.listen(PORT, (err) => {
   if (err) console.log(err);
   console.log(`Server running on port ${PORT}`);
 });

@@ -1,4 +1,4 @@
-export default function mockReducer(state = {}, { type, payload }) {
+export default function mockReducer(state = {}, { type }) {
   switch (type) {
     default:
       return state;
