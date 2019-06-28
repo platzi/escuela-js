@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../assets/styles/components/FeatureVideo.scss'
 
-const FeatureVideo = ({ image, name, year, contentRating, duration }) => (
+const FeatureVideo = ({ cover, title, year, contentRating, duration }) => (
   <section
     className="main"
-    style={{ backgroundImage: `url(${image})` }}
+    style={{ backgroundImage: `url(${cover})` }}
   >
     <div className="main__description">
-      <h2 className="main__description--title">{name}</h2>
+      <h2 className="main__description--title">{title}</h2>
       <h3>
         {year}
         {' '}
@@ -90,11 +90,11 @@ const FeatureVideo = ({ image, name, year, contentRating, duration }) => (
 );
 
 FeatureVideo.propTypes = {
-  name: PropTypes.string,
+  title: PropTypes.string,
   year: PropTypes.number,
   contentRating: PropTypes.string,
   duration: PropTypes.number,
-  image: PropTypes.string,
+  cover: PropTypes.string,
 };
 
 export default FeatureVideo;
