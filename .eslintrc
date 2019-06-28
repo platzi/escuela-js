@@ -23,7 +23,8 @@
       "absolute-first"
     ],
     "import/newline-after-import": "error",
-    "react/require-default-props": 0
+    "react/require-default-props": 0,
+    "jsx-a11y/click-events-have-key-events": 0
   },
   "globals": {
     "window": true,

@@ -1,41 +1,45 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
 import Categories from '../components/Categories';
 import FeatureVideo from '../components/FeatureVideo';
-import useTvShowsApi from '../hooks/useTvShowsApi';
 import '../assets/styles/Home.scss';
 
-const API = 'http://localhost:3000/api';
+const Home = ({ featureVideo, myList, trends, originals }) => (
+  <>
+    <FeatureVideo {...featureVideo} />
+    <Categories title="Mi lista">
+      <Carousel>
+        {myList.map(item =>
+          <CarouselItem {...item} isList />
+        )}
+      </Carousel>
+    </Categories>
+    <Categories title="Tendencias">
+      <Carousel>
+        {trends.map(item =>
+          <CarouselItem key={item.id} {...item} />
+        )}
+      </Carousel>
+    </Categories>
+    <Categories title="Originales de Platfix">
+      <Carousel>
+        {originals.map(item =>
+          <CarouselItem key={item.id} {...item} />
+        )}
+      </Carousel>
+    </Categories>
+  </>
+);
 
-const Home = () => {
-  const initialState = useTvShowsApi(API);
-  return initialState.length === 0 ? <h1>Loading...</h1> : (
-    <>
-      <FeatureVideo {...initialState.featureVideo} />
-      <Categories title="Mi lista">
-        <Carousel>
-          {initialState.mylist.map(item =>
-            <CarouselItem key={item.id} {...item} />
-          )}
-        </Carousel>
-      </Categories>
-      <Categories title="Tendencias">
-        <Carousel>
-          {initialState.trends.map(item =>
-            <CarouselItem key={item.id} {...item} />
-          )}
-        </Carousel>
-      </Categories>
-      <Categories title="Originales de Platfix">
-        <Carousel>
-          {initialState.originals.map(item =>
-            <CarouselItem key={item.id} {...item} />
-          )}
-        </Carousel>
-      </Categories>
-    </>
-  );
-}
+const mapStateToProps = state => {
+  return {
+    featureVideo: state.featureVideo,
+    myList: state.myList,
+    trends: state.trends,
+    originals: state.originals
+  };
+};
 
-export default Home;
+export default connect(mapStateToProps, null)(Home);

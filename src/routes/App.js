@@ -7,7 +7,7 @@ import Login from '../container/Login';
 import Register from '../container/Register';
 import NotFount from '../container/NotFount';
 
-const Routes = () => (
+const App = () => (
   <BrowserRouter>
     <Layout>
       <Switch>
@@ -21,4 +21,4 @@ const Routes = () => (
   </BrowserRouter>
 );
 
-export default Routes;
+export default App;

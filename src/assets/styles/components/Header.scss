@@ -13,6 +13,11 @@
   z-index: 3;
 }
 
+.header a {
+  color: $color-green;
+  text-decoration: none;
+}
+
 .header__item {
   align-items: center;
   display: flex;

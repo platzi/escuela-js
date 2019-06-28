@@ -1,11 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../assets/styles/components/Header.scss';
 
 const Header = () => (
   <div>
     <header className="header">
       <div className="header__item">
-        <h1 className="header__item--title">Platfix</h1>
+        <h1 className="header__item--title">
+          <Link to="/">
+            Platfix
+          </Link>
+        </h1>
       </div>
       <div className="header__input-container">
         <svg
