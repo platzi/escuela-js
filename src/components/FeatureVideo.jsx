@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../styles/components/FeatureVideo.scss'
+import '../assets/styles/components/FeatureVideo.scss'
 
 const FeatureVideo = ({ image, name, year, contentRating, duration }) => (
   <section

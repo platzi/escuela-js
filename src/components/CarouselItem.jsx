@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../styles/components/CarouselItem.scss';
-import playIcon from '../static/play.png';
+import '../assets/styles/components/CarouselItem.scss';
+import playIcon from '../assets/static/play.png';
 
 const CarouselItem = ({ image, name, year, contentRating, duration }) => (
   <div className="carousel-item">

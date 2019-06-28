@@ -5,7 +5,7 @@ import CarouselItem from '../components/CarouselItem';
 import Categories from '../components/Categories';
 import Footer from '../components/Footer';
 import FeatureVideo from '../components/FeatureVideo';
-import '../styles/App.scss';
+import '../assets/styles/App.scss';
 
 const data = {
   featureVideo: {
