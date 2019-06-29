@@ -48,4 +48,12 @@ export default class MediaPlayer {
     this.layers.appendChild(layer);
     return layer;
   }
+
+  toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      this.container.requestFullscreen().catch();
+    } else {
+      document.exitFullscreen();
+    }
+  }
 }
