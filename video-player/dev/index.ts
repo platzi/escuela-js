@@ -1,4 +1,9 @@
-import { MediaPlayer, AdsPlugin, AutoPausePlugin } from "../src";
+import {
+  MediaPlayer,
+  AdsPlugin,
+  AutoPausePlugin,
+  KeyboardControlPlugin
+} from "../src";
 
 let media = document.getElementById("movie") as HTMLMediaElement;
 
@@ -21,6 +26,7 @@ const ads = [
 new MediaPlayer(media, {
   plugins: [
     // new AdsPlugin(ads),
-    new AutoPausePlugin()
+    new AutoPausePlugin(),
+    new KeyboardControlPlugin()
   ]
 });
