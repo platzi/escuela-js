@@ -1,4 +1,4 @@
-import { MediaPlayer, AdsPlugin } from "../src";
+import { MediaPlayer, AdsPlugin, AutoPausePlugin } from "../src";
 
 let media = document.getElementById("movie") as HTMLMediaElement;
 
@@ -18,8 +18,9 @@ const ads = [
       "https://nomadx.com/packs/computer-video-audio-d7fe7764324342191c58d3c0e569af05.mp4"
   }
 ];
-const adsPlugin = new AdsPlugin(ads);
-
 new MediaPlayer(media, {
-  plugins: [adsPlugin]
+  plugins: [
+    // new AdsPlugin(ads),
+    new AutoPausePlugin()
+  ]
 });

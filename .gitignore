@@ -71,3 +71,7 @@ typings/
 # Docs Custom
 .cache/
 yarn-error.log
+
+# JavaScript Profesional
+video-player/dist/
+video-player/.cache
