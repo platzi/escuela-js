@@ -96,34 +96,51 @@ class ClassicAd implements Ad {
 class VideoAdView {
   private ad: VideoAdDescriptor;
   private player: MediaPlayer;
+  private skipCount: number = 5;
+  private container: Element;
+  private intervals: number[];
 
   constructor(ad: VideoAdDescriptor, player: MediaPlayer) {
     this.ad = ad;
     this.player = player;
   }
 
+  unmount() {
+    this.container.remove();
+    this.player.getMedia().play();
+  }
+
   render(): ChildNode {
-    const container = document.createElement("div");
-    container.className = "pvjs-video-ad";
-    container.innerHTML = `
+    this.container = document.createElement("div");
+    this.container.className = "pvjs-video-ad";
+    this.container.innerHTML = `
       <video autoplay class="pvjs-videoad__video">
         <source src="${this.ad.src}" />
       </video>
       <button class="pvjs-videoad__skip-button" disabled>You can skip to video in 5</button>
     `;
 
-    this.player.getMedia().pause();
-    let adVideo = container.querySelector("video");
-    adVideo.addEventListener(
-      "ended",
-      event => {
-        container.remove();
-        this.player.getMedia().play();
-      },
-      { once: true }
-    );
+    let video = this.container.querySelector("video");
+    let button = this.container.querySelector("button");
+    button.onclick = () => this.unmount();
 
-    return container;
+    let decreaseSkipCount = setInterval(() => {
+      if (this.skipCount > 1) {
+        this.skipCount--;
+        this.container.querySelector(
+          "button"
+        ).innerText = `You can skip to video in ${this.skipCount}`;
+      } else {
+        button.innerText = `Skip`;
+        button.disabled = false;
+        clearInterval(decreaseSkipCount);
+      }
+    }, 1000);
+
+    this.player.getMedia().pause();
+    video.addEventListener("ended", () => this.unmount(), { once: true });
+
+    return this.container;
   }
 }
 
