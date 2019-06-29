@@ -106,8 +106,9 @@ class VideoAdView {
   }
 
   unmount() {
-    this.container.remove();
+    this.player.getMedia().removeEventListener("play", this.lockMainVideo);
     this.player.getMedia().play();
+    this.container.remove();
   }
 
   render(): ChildNode {
@@ -138,9 +139,14 @@ class VideoAdView {
     }, 1000);
 
     this.player.getMedia().pause();
+    this.player.getMedia().addEventListener("play", this.lockMainVideo);
     video.addEventListener("ended", () => this.unmount(), { once: true });
 
     return this.container;
+  }
+
+  private lockMainVideo(e: Event) {
+    (e.target as HTMLMediaElement).pause();
   }
 }
 

@@ -25,7 +25,7 @@ const ads = [
 ];
 new MediaPlayer(media, {
   plugins: [
-    // new AdsPlugin(ads),
+    new AdsPlugin(ads),
     new AutoPausePlugin(),
     new KeyboardControlPlugin()
   ]
