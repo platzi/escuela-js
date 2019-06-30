@@ -4,8 +4,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 import { renderRoutes } from 'react-router-config';
-import Routes from '../../frontend/routes/serverRoutes';
 import thunk from 'redux-thunk';
+import Routes from '../../frontend/routes/serverRoutes';
 import render from '../render';
 import Layout from '../../frontend/components/Layout';
 import reducer from '../../frontend/reducers';
@@ -19,18 +19,18 @@ const main = async (req, res, next) => {
         <StaticRouter
           location={req.url}
           context={{}}
-        > 
+        >
           <Layout>
             {renderRoutes(Routes)}
           </Layout>
         </StaticRouter>
-      </Provider>
+      </Provider>,
     );
     const preloadedState = store.getState();
     res.send(render(html, preloadedState));
   } catch (err) {
     next(err);
   }
-}
+};
 
 export default main;
