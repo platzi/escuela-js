@@ -130,6 +130,7 @@ Clase 21.
 
 Clase 22.
   Explicar el asset-require-hook
+  https://www.npmjs.com/package/asset-require-hook
   ```
   require('asset-require-hook')({
     extensions: ['jpg', 'png', 'gif'],
