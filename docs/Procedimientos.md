@@ -1,6 +1,14 @@
 Clase 2.
   - `yarn init`
   - Habilitando ES6 en Node con @babel/register
+    ```
+    require('@babel/register')({
+      ignore: [/(node_modules)/],
+      presets: ['@babel/preset-env', '@babel/preset-react']
+    });
+
+    require('./server');
+    ```
   - Creando server
   - Crear Script:
     ```
@@ -119,3 +127,13 @@ Clase 21.
       },
     },
     ```
+
+Clase 22.
+  Explicar el asset-require-hook
+  ```
+  require('asset-require-hook')({
+    extensions: ['jpg', 'png', 'gif'],
+    name: '/assets/[hash].[ext]',
+  });
+
+  ```

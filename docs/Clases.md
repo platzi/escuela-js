@@ -88,5 +88,5 @@ Clase 14.
     Añadiendo vars por defecto
 
   Clase 22.
-
+    Assets require hook
 > Modulo 6. Bonus: Creando un CLI para reusar proyectos. 
