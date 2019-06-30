@@ -76,3 +76,17 @@ Clase 14.
 
   Clase 18.
     Preparando webpack para el server
+
+  Clase 19.
+    Configurando hashes a nuestros assets
+> Modulo 5. Integrando con proyecto de React + Redux
+
+  Clase 20.
+    Integrando archivos
+  
+  Clase 21.
+    Añadiendo vars por defecto
+
+  Clase 22.
+
+> Modulo 6. Bonus: Creando un CLI para reusar proyectos. 

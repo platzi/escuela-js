@@ -104,3 +104,18 @@ Clase 18.
 
 Clase 19. 
   Configurando hashes
+
+Clase 20.
+  - Moviendo archivos
+  - Tener en cuenta que assets ahora ira dentro de frontend.
+
+Clase 21.
+  - Agregar Vars por defecto
+    ```
+    {
+      loader: 'sass-loader',
+      options: {
+        data: `@import "${path.resolve(__dirname, 'src/frontend/assets/styles/vars.scss')}";`,
+      },
+    },
+    ```

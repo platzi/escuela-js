@@ -44,28 +44,39 @@ module.exports = {
           },
           'css-loader',
           'postcss-loader',
-          'sass-loader',
-        ],
-      },
-      {
-        test: /\.(png|gif|jpg)$/,
-        use: [
           {
-            loader: 'file-loader',
+            loader: 'sass-loader',
             options: {
-              name: 'assets/[hash].[ext]',
+              data: `@import "${path.resolve(__dirname, 'src/frontend/assets/styles/vars.scss')}";`,
             },
           },
         ],
       },
       {
-        test: /(\.eot|\.woff|\.woff2|\.ttf|\.svg|\.png|\.jpg|\.gif)$/,
-        loader: 'url-loader?limit=10000&name=assets/[name].[ext]',
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              mimetype: 'image/png',
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {}
+          }
+        ]
       },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.sass'],
+    extensions: ['.js', '.jsx', '.sass', '.scss'],
     modules: ['node_modules'],
   },
   optimization: {
@@ -100,7 +111,7 @@ module.exports = {
     }),
     new TransferWebpackPlugin([
       { from: 'assets' },
-    ], path.resolve(__dirname, 'src')),
+    ], path.resolve(__dirname, 'src/frontend/')),
     new MiniCssExtractPlugin({
       filename: 'assets/app.css',
     }),

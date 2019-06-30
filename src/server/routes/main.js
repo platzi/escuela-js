@@ -7,21 +7,22 @@ import { renderRoutes } from 'react-router-config';
 import Routes from '../../frontend/routes/serverRoutes';
 import thunk from 'redux-thunk';
 import render from '../render';
-import rootReducer from '../../frontend/reducers/rootReducer';
+import Layout from '../../frontend/components/Layout';
+import reducer from '../../frontend/reducers';
+import initialState from '../../frontend/initialState';
 
 const main = async (req, res, next) => {
   try {
-    const initialState = {
-      name: 'Server route',
-    };
-    const store = createStore(rootReducer, initialState, compose(applyMiddleware(thunk)));
+    const store = createStore(reducer, initialState, compose(applyMiddleware(thunk)));
     const html = renderToString(
       <Provider store={store}>
         <StaticRouter
           location={req.url}
           context={{}}
-        >
-          {renderRoutes(Routes)}
+        > 
+          <Layout>
+            {renderRoutes(Routes)}
+          </Layout>
         </StaticRouter>
       </Provider>
     );

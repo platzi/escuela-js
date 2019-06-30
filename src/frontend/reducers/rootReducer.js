@@ -3,7 +3,10 @@ import mockReducer from './mockReducer';
 
 const rootReducer = combineReducers(
   {
-    name: mockReducer,
+    myList: mockReducer,
+    trends: mockReducer,
+    originals: mockReducer,
+    featureVideo: mockReducer,
   },
 );
 

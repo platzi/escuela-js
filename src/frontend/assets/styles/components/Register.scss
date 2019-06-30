@@ -1,0 +1,97 @@
+.register {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 6em 30px;
+  background-image: url("https://images.pexels.com/photos/707667/pexels-photo-707667.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.register__header {
+  align-items: center;
+  background-color: transparent;
+  color: white;
+  display: flex;
+  height: 80px;
+  justify-content: space-between;
+  top: 0px;
+  width: 100%;
+}
+
+.register__header--title {
+  color: #95ca3e;
+  font-size: 30px;
+}
+
+.register__container {
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 20px;
+  width: 300px;
+}
+
+.register__container--form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register__container--login {
+  color: white;
+  font-size: 13px;
+  text-align: center;
+  margin: 20px 0 0 0;
+}
+
+.register__footer {
+  align-items: center;
+  color: white;
+  display: flex;
+  font-size: 13px;
+  height: 100px;
+  width: 100%;
+}
+
+.register__footer--link {
+  padding-right: 20px;
+}
+
+.input {
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  height: 50px;
+  margin-bottom: 20px;
+  padding: 0px 20px;
+}
+
+.button {
+  background-color: #e50914;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  height: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    background-image: none;
+  }
+
+  .register__container {
+    padding: 0px;
+    width: 100%;
+  }
+
+  .register__footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

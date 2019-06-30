@@ -1,0 +1,47 @@
+.header {
+  align-items: center;
+  background-color: rgba(0,0,0,0.75);
+  color: white;
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 3;
+}
+
+.header a {
+  color: $color-green;
+  text-decoration: none;
+}
+
+.header__item {
+  align-items: center;
+  display: flex;
+  margin-left: 30px;
+}
+
+.header__item--title {
+  color: $color-green;
+  font-size: 30px;
+}
+
+.header__input-container {
+  align-items: center;
+  background-color: $gb-color;
+  border: 1px solid white;
+  display: flex;
+  margin-right: 30px;
+  padding: 3px;
+}
+
+.header__input-container--text {
+  background-color: $gb-color;
+  border: none;
+  color: white;
+  font-size: 13px;
+  height: 30px;
+  outline: none;
+  padding-left: 5px;
+}
