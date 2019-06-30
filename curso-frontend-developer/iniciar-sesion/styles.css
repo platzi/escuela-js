@@ -14,7 +14,7 @@ body {
   padding: 0px 30px;
 }
 
-.login__header {
+.header {
   align-items: center;
   background-color: transparent;
   color: white;
@@ -23,6 +23,11 @@ body {
   justify-content: space-between;
   top: 0px;
   width: 100%;
+}
+
+.header__img {
+  margin-left: 30px;
+  width: 200px;
 }
 
 .login__header--title {
