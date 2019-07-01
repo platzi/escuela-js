@@ -6,8 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Knewave&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
   <!-- Styles -->
   <link rel="stylesheet" href="./styles.css">
   <!-- Title -->
@@ -16,11 +14,21 @@
 <body>
   <header class="header">
     <img class="header__img" src="../assets/logo-platzi-video-BW2.png" alt="Platzi Video">
+    <div class="header__menu">
+      <div class="header__menu--profile">
+        <img src="../assets/user-icon.png" alt="">
+        <p>Perfil</p>
+      </div>
+      <ul>
+        <li><a href="/">Cuenta</a></li>
+        <li><a href="/">Cerrar Sesión</a></li>
+      </ul>
+    </div>
   </header>
 
   <section class="main">
-      <h2 class="main__title">¿Qué quieres ver hoy?</h2>
-      <input type="text" class="input" placeholder="Buscar...">
+    <h2 class="main__title">¿Qué quieres ver hoy?</h2>
+    <input type="text" class="input" placeholder="Buscar...">
   </section>
 
   <h3 class="categories__title">Mi lista</h3>
