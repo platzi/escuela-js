@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
 import Categories from '../components/Categories';
-import FeatureVideo from '../components/FeatureVideo';
+import Search from '../components/Search';
 import '../assets/styles/Home.scss';
 
-const Home = ({ featureVideo, myList, trends, originals }) => (
+const Home = ({ myList, trends, originals }) => (
   <>
-    <FeatureVideo {...featureVideo} />
+    <Search />
     <Categories title="Mi lista">
       <Carousel>
         {myList.map(item =>
@@ -35,7 +35,6 @@ const Home = ({ featureVideo, myList, trends, originals }) => (
 
 const mapStateToProps = state => {
   return {
-    featureVideo: state.featureVideo,
     myList: state.myList,
     trends: state.trends,
     originals: state.originals

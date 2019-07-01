@@ -1,33 +1,33 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import '../assets/styles/components/Login.scss';
-import googleIcon from '../assets/static/google.png';
-import twitterIcon from '../assets/static/twitter.png';
+import googleIcon from '../assets/static/google-icon.png';
+import twitterIcon from '../assets/static/twitter-icon.png';
 
 const Login = () => (
-  <div className="login">
-    <div className="login__container">
+  <section className="login">
+    <section className="login__container">
       <h2>Inicia sesión</h2>
       <form className="login__container--form">
         <input className="input" type="text" placeholder="Correo" />
         <input className="input" type="password" placeholder="Contraseña" />
         <button className="button" type="button">Iniciar sesión</button>
-        <div className="remember-me">
+        <div className="login__container--remember-me">
           <label htmlFor="first_checkbox">
             <input type="checkbox" id="cbox1" value="first_checkbox" />
             Recuérdame
           </label>
-          <a className="forgot" href="/">Olvidé mi contraseña</a>
+          <a href="/">Olvidé mi contraseña</a>
         </div>
       </form>
       <section className="login__container--social-media">
         <div>
-          <img src={googleIcon} alt="Inicia sesión con Google" />
+          <img src={googleIcon} alt="Google" />
           {' '}
           Inicia sesión con Google
         </div>
         <div>
-          <img src={twitterIcon} alt="Inicia sesión con Twitter" />
+          <img src={twitterIcon} alt="Twitter" />
           {' '}
           Inicia sesión con Twitter
         </div>
@@ -39,8 +39,8 @@ const Login = () => (
           Regístrate
         </Link>
       </p>
-    </div>
-  </div>
+    </section>
+  </section>
 );
 
 export default Login;

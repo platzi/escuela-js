@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setFavorite } from "../actions";
 import '../assets/styles/components/CarouselItem.scss';
-import playIcon from '../assets/static/play.png';
-import addIcon from '../assets/static/add.png';
+import playIcon from '../assets/static/play-icon.png';
+import plusIcon from '../assets/static/plus-icon.png'
 
 const CarouselItem = (props) => {
   const { cover, title, year, contentRating, duration, isList } = props;
@@ -17,39 +17,24 @@ const CarouselItem = (props) => {
     <div className="carousel-item">
       <img className="carousel-item__img" src={cover} alt={title} />
       <div className="carousel-item__details">
-        <img
-          className="carousel-item__details--img"
-          src={playIcon}
-          alt="play-icon"
-        />
-        {!isList ? (
-          <div
-            className="carousel-item__details--subtitle"
-            onClick={handleSetFavorite}
-            role="button"
-            tabIndex="0"
-          >
+        <div>
+          <img className="carousel-item__details--img" src={playIcon} alt="Play Icon" />
+          {!isList ? (
             <img
               className="carousel-item__details--img"
-              src={addIcon}
-              alt="play-icon"
+              src={plusIcon}
+              alt="Plus Icon"
+              onClick={handleSetFavorite}
             />
-          </div>
-        ) : null
-        }
+          ) : null
+          }
+        </div>
         <p className="carousel-item__details--title">{title}</p>
-        <p className="carousel-item__details--subtitle">
-          {year}
-          {' '}
-          {contentRating}
-          {' '}
-          {duration}
-        </p>
+        <p className="carousel-item__details--subtitle">{`${year} ${contentRating} ${duration}`}</p>
       </div>
     </div>
   );
 }
-
 CarouselItem.propTypes = {
   title: PropTypes.string,
   year: PropTypes.number,

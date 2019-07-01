@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import '../assets/styles/components/Register.scss';
 
 const Register = () => (
-  <div className="register">
-    <div className="register__container">
+  <section className="register">
+    <section className="register__container">
       <h2>Regístrate</h2>
       <form className="register__container--form">
         <input className="input" type="text" placeholder="Nombre" />
@@ -15,8 +15,8 @@ const Register = () => (
       <Link to="/login" className="register__container--login">
         Iniciar sesión
       </Link>
-    </div>
-  </div>
+    </section>
+  </section>
 );
 
 export default Register;
