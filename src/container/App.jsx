@@ -1,11 +1,11 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import Header from '../components/Header';
+import Search from '../components/Search';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
 import Categories from '../components/Categories';
 import Footer from '../components/Footer';
-import FeatureVideo from '../components/FeatureVideo';
 import useTvShowsApi from '../hooks/useTvShowsApi';
 import '../assets/styles/App.scss';
 
@@ -16,7 +16,7 @@ const App = () => {
   return initialState.length === 0 ? <h1>Loading...</h1> : (
     <Layout>
       <Header />
-      <FeatureVideo {...initialState.featureVideo} />
+      <Search />
       <Categories title="Mi lista">
         <Carousel>
           {initialState.mylist.map(item =>

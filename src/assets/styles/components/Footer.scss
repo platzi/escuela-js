@@ -1,32 +1,19 @@
 .footer {
   align-items: center;
-  color: white;
+  background-color: #8f57fd;
   display: flex;
-  font-size: 13px;
   height: 100px;
   width: 100%;
 }
 
 .footer a {
   color: white;
+  cursor: pointer;
+  font-size: 14px;
+  padding-left: 30px;
   text-decoration: none;
 }
 
-.footer__link {
-  padding: 0px 20px 0px 30px;
-}
-
-@media only screen and (max-width: 600px) {
-  .main {
-    height: 450px;
-  }
-
-  .main__description--title {
-    font-size: 30px;
-  }
-
-  .footer {
-    align-items: flex-start;
-    flex-direction: column;
-  }
+.footer a:hover {
+  text-decoration: underline;
 }
