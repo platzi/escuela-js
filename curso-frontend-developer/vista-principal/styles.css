@@ -10,6 +10,7 @@ body {
 
 .header {
   align-items: center;
+  background: #8f57fd;
   color: white;
   display: flex;
   height: 100px;
