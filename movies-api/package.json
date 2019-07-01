@@ -1,0 +1,63 @@
+{
+  "name": "platfix-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "DEBUG=express:*,app:* nodemon index",
+    "start": "NODE_ENV=production node index",
+    "debug": "DEBUG=express:*,app:* npm run start",
+    "test": "mocha --exit",
+    "cover": "nyc npm run test",
+    "report": "nyc report --reporter=html && open coverage/index.html"
+  },
+  "engines": {
+    "node": "10.16.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/boom": "^7.4.2",
+    "@hapi/joi": "^15.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.2.7"
+  },
+  "devDependencies": {
+    "chalk": "^2.4.2",
+    "eslint": "^6.0.0",
+    "eslint-config-prettier": "^5.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^2.5.0",
+    "lint-staged": "^8.2.1",
+    "mocha": "^6.1.4",
+    "nodemon": "^1.19.1",
+    "nyc": "^14.1.1",
+    "prettier": "^1.18.2",
+    "proxyquire": "^2.1.0",
+    "sinon": "^7.3.2",
+    "supertest": "^4.0.2"
+  },
+  "nyc": {
+    "all": true,
+    "include": [
+      "routes",
+      "services",
+      "lib",
+      "utils"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
