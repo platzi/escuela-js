@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "b08b5864-14ac-4d1e-9926-f45659d88777",
+		"name": "Platzi Video SSR",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST auth/sign-in",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6d768160-1a7e-4b9b-8d1e-26ed7007f9e1",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "toor",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "root@undefined.sh",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"type": "text",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{client_url}}/auth/sign-in",
+					"host": [
+						"{{client_url}}"
+					],
+					"path": [
+						"auth",
+						"sign-in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST auth/sign-up",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6d768160-1a7e-4b9b-8d1e-26ed7007f9e1",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"type": "text",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Guillermo León\",\n\t\"email\": \"guillermo@undefined.sh\",\n\t\"password\": \"test\"\n}"
+				},
+				"url": {
+					"raw": "{{client_url}}/auth/sign-up",
+					"host": [
+						"{{client_url}}"
+					],
+					"path": [
+						"auth",
+						"sign-up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET movies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae7c7a1f-875b-4b8e-9b42-e721b72b9ee4",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"type": "text",
+						"value": "XMLHttpRequest"
+					}
+				],
+				"url": {
+					"raw": "{{client_url}}/movies?userId={{user_id}}",
+					"host": [
+						"{{client_url}}"
+					],
+					"path": [
+						"movies"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "{{user_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

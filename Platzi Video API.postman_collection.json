@@ -1,0 +1,540 @@
+{
+	"info": {
+		"_postman_id": "ff70e45d-ff48-4149-91e2-2e33db39d052",
+		"name": "Platzi Video API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET movies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae7c7a1f-875b-4b8e-9b42-e721b72b9ee4",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"movie_id\", jsonData.data[0]._id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/movies",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET movies [tags]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"type": "text",
+						"value": "XMLHttpRequest"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/movies?tags[]=Action|Adventure&tags[]=Drama",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"movies"
+					],
+					"query": [
+						{
+							"key": "tags[]",
+							"value": "Action|Adventure"
+						},
+						{
+							"key": "tags[]",
+							"value": "Drama"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET movie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"type": "text",
+						"value": "XMLHttpRequest"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/movies/{{movie_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"movies",
+						"{{movie_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST movie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Requested-With",
+						"type": "text",
+						"value": "XMLHttpRequest"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"King Solomon's Mines\",\n    \"year\": 2019,\n    \"cover\": \"http://dummyimage.com/800x600.png/ff4444/ffffff\",\n    \"description\":\n      \"In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.\",\n    \"duration\": 66,\n    \"contentRating\": \"G\",\n    \"source\": \"https://ovh.net/semper/rutrum/nulla/nunc.jsp\",\n    \"tags\": [\n      \"Action|Adventure\",\n      \"Action|Adventure|Thriller\",\n      \"Horror|Western\",\n      \"Horror|Thriller\",\n      \"Comedy|Romance|Sci-Fi\",\n      \"Adventure|Animation|Children|Comedy|Fantasy\",\n      \"Drama\"\n    ]\n  }"
+				},
+				"url": {
+					"raw": "{{url}}/api/movies",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH movie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"duration\": 90\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/movies/{{movie_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"movies",
+						"{{movie_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE movie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"type": "text",
+						"value": "XMLHttpRequest"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/movies/{{movie_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"movies",
+						"{{movie_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET user movies [userId]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d7f1de8a-b035-496c-8a01-8ed311a2dd05",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"user_movie_id\", jsonData.data[0]._id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"type": "text",
+						"value": "XMLHttpRequest"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/user-movies?userId={{user_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"user-movies"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "{{user_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST user movie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Requested-With",
+						"type": "text",
+						"value": "XMLHttpRequest"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": \"{{user_id}}\",\n    \"movieId\": \"{{movie_id}}\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/user-movies",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"user-movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE user movie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"type": "text",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/user-movies/{{user_movie_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"user-movies",
+						"{{user_movie_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST auth/sign-in",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6d768160-1a7e-4b9b-8d1e-26ed7007f9e1",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"access_token\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "root@undefined.sh",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "toor",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"type": "text",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"apiKeyToken\": \"{{admin_api_key_token}}\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/auth/sign-in",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"sign-in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST auth/sign-up",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6d768160-1a7e-4b9b-8d1e-26ed7007f9e1",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"type": "text",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Jesus Maria\",\n\t\"email\": \"jesus@undefined.sh\",\n\t\"password\": \"test\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/auth/sign-up",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"sign-up"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ce45ae23-1ca4-4627-bd8d-4972064e15f8",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a93adbe2-4e2f-4c23-86be-4329f8803116",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
