@@ -1,4 +1,5 @@
 const express = require('express');
+const passport = require('passport');
 const MoviesService = require('../services/movies');
 const validationHandler = require('../utils/middleware/validationHandler');
 
@@ -9,10 +10,14 @@ const {
 } = require('../utils/schemas/movies');
 
 const cacheResponse = require('../utils/cacheResponse');
+
 const {
   FIVE_MINUTES_IN_SECONDS,
   SIXTY_MINUTES_IN_SECONDS
 } = require('../utils/time');
+
+// JWT strategy
+require('../utils/auth/strategies/jwt');
 
 function moviesApi(app) {
   const router = express.Router();
@@ -20,24 +25,30 @@ function moviesApi(app) {
 
   const moviesService = new MoviesService();
 
-  router.get('/', async function(req, res, next) {
-    cacheResponse(res, FIVE_MINUTES_IN_SECONDS);
-    const { tags } = req.query;
+  router.get(
+    '/',
+    passport.authenticate('jwt', { session: false }),
+    // TODO: Middleware to validate scopes
+    async function(req, res, next) {
+      cacheResponse(res, FIVE_MINUTES_IN_SECONDS);
+      const { tags } = req.query;
 
-    try {
-      const movies = await moviesService.getMovies({ tags });
+      try {
+        const movies = await moviesService.getMovies({ tags });
 
-      res.status(200).json({
-        data: movies,
-        message: 'movies listed'
-      });
-    } catch (error) {
-      next(error);
+        res.status(200).json({
+          data: movies,
+          message: 'movies listed'
+        });
+      } catch (error) {
+        next(error);
+      }
     }
-  });
+  );
 
   router.get(
     '/:movieId',
+    passport.authenticate('jwt', { session: false }),
     validationHandler({ movieId: movieIdSchema }, 'params'),
     async function(req, res, next) {
       cacheResponse(res, SIXTY_MINUTES_IN_SECONDS);
@@ -56,27 +67,29 @@ function moviesApi(app) {
     }
   );
 
-  router.post('/', validationHandler(createMovieSchema), async function(
-    req,
-    res,
-    next
-  ) {
-    const { body: movie } = req;
+  router.post(
+    '/',
+    passport.authenticate('jwt', { session: false }),
+    validationHandler(createMovieSchema),
+    async function(req, res, next) {
+      const { body: movie } = req;
 
-    try {
-      const createdMovieId = await moviesService.createMovie({ movie });
+      try {
+        const createdMovieId = await moviesService.createMovie({ movie });
 
-      res.status(201).json({
-        data: createdMovieId,
-        message: 'movie created'
-      });
-    } catch (err) {
-      next(err);
+        res.status(201).json({
+          data: createdMovieId,
+          message: 'movie created'
+        });
+      } catch (err) {
+        next(err);
+      }
     }
-  });
+  );
 
   router.patch(
     '/:movieId',
+    passport.authenticate('jwt', { session: false }),
     validationHandler({ movieId: movieIdSchema }, 'params'),
     validationHandler(updateMovieSchema),
     async function(req, res, next) {
@@ -101,6 +114,7 @@ function moviesApi(app) {
 
   router.delete(
     '/:movieId',
+    passport.authenticate('jwt', { session: false }),
     validationHandler({ movieId: movieIdSchema }, 'params'),
     async function(req, res, next) {
       const { movieId } = req.params;
@@ -112,7 +126,7 @@ function moviesApi(app) {
 
         res.status(200).json({
           data: deletedMovieId,
-          message: 'product deleted'
+          message: 'movie deleted'
         });
       } catch (err) {
         next(err);
