@@ -61,8 +61,8 @@ module.exports = {
               name: 'assets/[hash].[ext]',
             },
           },
-        ]
-      }
+        ],
+      },
     ],
   },
   resolve: {
