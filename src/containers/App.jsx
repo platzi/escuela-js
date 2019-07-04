@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 import useTvShowsApi from '../hooks/useTvShowsApi';
 import '../assets/styles/App.scss';
 
-const API = 'http://localhost:3000/api';
+const API = 'http://localhost:3000/initalState';
 
 const App = () => {
   const initialState = useTvShowsApi(API);
@@ -17,13 +17,15 @@ const App = () => {
     <Layout>
       <Header />
       <Search />
-      <Categories title="Mi lista">
-        <Carousel>
-          {initialState.mylist.map(item =>
-            <CarouselItem key={item.id} {...item} />
-          )}
-        </Carousel>
-      </Categories>
+      {initialState.mylist.length > 0 && (
+        <Categories title="Mi lista">
+          <Carousel>
+            {initialState.mylist.map(item =>
+              <CarouselItem key={item.id} {...item} />
+            )}
+          </Carousel>
+        </Categories>
+      )}
       <Categories title="Tendencias">
         <Carousel>
           {initialState.trends.map(item =>
