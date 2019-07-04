@@ -14,6 +14,6 @@ const render = (html, preloadedState) => {
         </body>
     </html>
   `);
-}
+};
 
 export default render;

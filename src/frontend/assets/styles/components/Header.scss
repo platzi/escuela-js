@@ -1,47 +1,63 @@
 .header {
   align-items: center;
-  background-color: rgba(0,0,0,0.75);
+  background: #8f57fd;
   color: white;
   display: flex;
-  height: 60px;
+  height: 100px;
   justify-content: space-between;
-  position: fixed;
   top: 0px;
   width: 100%;
-  z-index: 3;
 }
 
-.header a {
-  color: $color-green;
+.isLogin, .isRegister {
+  background-color: #21c08b;
+}
+
+.header__img {
+  margin-left: 30px;
+  width: 200px;
+}
+
+.header__menu {
+	margin-right: 30px;
+}
+
+.header__menu ul {
+  display: none;
+  list-style: none;
+  margin: 0px 0px 0px -14px;
+  padding: 0px;
+  position: absolute;
+  width: 100px;
+  text-align: right;
+}
+
+.header__menu:hover ul, ul:hover {
+	display: block;
+}
+
+.header__menu li {
+  margin: 10px 0px;
+}
+
+.header__menu li a {
+  color: white;
   text-decoration: none;
 }
 
-.header__item {
+.header__menu li a:hover {
+  text-decoration: underline;
+}
+
+.header__menu--profile {
   align-items: center;
   display: flex;
-  margin-left: 30px;
+  cursor: pointer;
 }
 
-.header__item--title {
-  color: $color-green;
-  font-size: 30px;
-}
-
-.header__input-container {
-  align-items: center;
-  background-color: $gb-color;
-  border: 1px solid white;
-  display: flex;
-  margin-right: 30px;
-  padding: 3px;
-}
-
-.header__input-container--text {
-  background-color: $gb-color;
-  border: none;
-  color: white;
-  font-size: 13px;
-  height: 30px;
-  outline: none;
-  padding-left: 5px;
+.header__menu--profile img {
+  margin-right: 8px;
+  width: 40px;
+  border-radius: 100%;
+  object-fit: cover;
 }
