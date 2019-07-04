@@ -8,19 +8,21 @@ import '../assets/styles/Home.scss';
 
 const Home = ({ myList, trends, originals }) => (
   <>
-    <Search />
-    <Categories title="Mi lista">
-      <Carousel>
-        {myList.map(item =>
-          <CarouselItem {...item} isList />
-        )}
-      </Carousel>
-    </Categories>
+    <Search isHome />
+    {myList.length > 0 && (
+      <Categories title="Mi lista">
+        <Carousel>
+          {myList.map(item =>
+            <CarouselItem {...item} isList />
+          )}
+        </Carousel>
+      </Categories>
+    )}
     <Categories title="Tendencias">
       <Carousel>
-        {trends.map(item =>
+        {trends.map(item => (
           <CarouselItem key={item.id} {...item} />
-        )}
+        ))}
       </Carousel>
     </Categories>
     <Categories title="Originales de Platfix">
