@@ -5,7 +5,7 @@ import { createStore, compose } from 'redux';
 import reducer from './reducers';
 import App from './routes/App';
 
-const data = {
+const initialState = {
   "featureVideo": {
     "id": 1,
     "slug": "tvshow-1",
@@ -182,7 +182,6 @@ const data = {
   ]
 }
 
-const initialState = data;
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, initialState, composeEnhancers());
 
@@ -192,4 +191,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app')
 );
-

@@ -1,18 +1,5 @@
 {
-  "api": {
-    "featureVideo": {
-      "id": 1,
-      "slug": "tvshow-1",
-      "title": "Game of Thrones",
-      "type": "Adventure",
-      "language": "English",
-      "year": 2019,
-      "contentRating": "18+",
-      "duration": 190,
-      "cover": "http://dummyimage.com/800x600.png/52B372/ffffff",
-      "description": "Vestibulum ac est lacinia nisi venenatis tristique",
-      "source": "https://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4"
-    },
+  "initalState": {
     "mylist": [],
     "trends": [
       {

@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Layout from '../components/Layout';
-import Home from '../container/Home';
-import Player from '../container/Player';
-import Login from '../container/Login';
-import Register from '../container/Register';
-import NotFount from '../container/NotFount';
+import Home from '../containers/Home';
+import Player from '../containers/Player';
+import Login from '../containers/Login';
+import Register from '../containers/Register';
+import NotFount from '../containers/NotFount';
 
 const App = () => (
   <BrowserRouter>
