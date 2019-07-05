@@ -8,6 +8,7 @@ import App from './routes/App';
 const initialState = {
   "user": {},
   "myList": [],
+  "playing": {},
   "trends": [
     {
       "id": 2,

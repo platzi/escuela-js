@@ -21,6 +21,13 @@ export const registerRequest = payload => ({
 export const deteleFavorite = payload => ({
   type: 'DELETE_FAVORITE',
   payload,
-})
+});
+
+export const getVideoSource = payload => ({
+  type: 'GET_VIDEO_SOURCE',
+  payload,
+});
+
+
 
 export { setFavorite as default }
