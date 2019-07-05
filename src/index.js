@@ -6,11 +6,7 @@ import reducer from './reducers';
 import App from './routes/App';
 
 const initialState = {
-  "user": {
-    "id": 1,
-    "name": "Oscar Barajas",
-    "email": "oscar@dragons.mx",
-  },
+  "user": {},
   "myList": [],
   "trends": [
     {
