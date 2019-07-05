@@ -1,7 +1,11 @@
 import React from 'react'
+import Header from '../components/Header';
 
 const NotFount = () => (
-  <h1>No encontrado</h1>
+  <>
+    <Header />
+    <h1>No encontrado</h1>
+  </>
 );
 
 export default NotFount;
