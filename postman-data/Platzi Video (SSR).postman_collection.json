@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "b08b5864-14ac-4d1e-9926-f45659d88777",
-		"name": "Platzi Video SSR",
+		"name": "Platzi Video (SSR)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -154,6 +154,79 @@
 							"key": "userId",
 							"value": "{{user_id}}"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST user movie",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Requested-With",
+						"type": "text",
+						"value": "XMLHttpRequest"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": \"{{user_id}}\",\n    \"movieId\": \"{{movie_id}}\"\n}"
+				},
+				"url": {
+					"raw": "{{client_url}}/user-movies",
+					"host": [
+						"{{client_url}}"
+					],
+					"path": [
+						"user-movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE user movie",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"type": "text",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{client_url}}/user-movies/{{user_movie_id}}",
+					"host": [
+						"{{client_url}}"
+					],
+					"path": [
+						"user-movies",
+						"{{user_movie_id}}"
 					]
 				}
 			},
