@@ -17,11 +17,10 @@ if (typeof window !== 'undefined') {
   const preloadedState = window.__PRELOADED_STATE__;
   const store = createStore(reducer, preloadedState, composeEnhancers(applyMiddleware(thunk)));
   const history = createBrowserHistory();
-
   hydrate(
     <Provider store={store}>
       <Router history={history}>
-        <App />
+        <App user={preloadedState.user} />
       </Router>
     </Provider>,
     document.getElementById('app'),

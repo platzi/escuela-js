@@ -16,12 +16,9 @@ const main = async (req, res, next) => {
     const store = createStore(reducer, initialState, compose(applyMiddleware(thunk)));
     const html = renderToString(
       <Provider store={store}>
-        <StaticRouter
-          location={req.url}
-          context={{}}
-        >
+        <StaticRouter location={req.url} context={{}}>
           <Layout>
-            {renderRoutes(Routes)}
+            {renderRoutes(Routes(initialState.user))}
           </Layout>
         </StaticRouter>
       </Provider>,
@@ -29,6 +26,7 @@ const main = async (req, res, next) => {
     const preloadedState = store.getState();
     res.send(render(html, preloadedState));
   } catch (err) {
+    console.log(err);
     next(err);
   }
 };
