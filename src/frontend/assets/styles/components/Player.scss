@@ -8,20 +8,23 @@ video {
   left: 0;
 }
 
+video:hover .Player-back {
+  display: block;
+}
+
 .Player-back {
   position: fixed;
-  top: 0;
-  background: rgba(0, 0, 0, .3);
-  color: #f1f1f1;
-  width: 100%;
-  padding: 5px;
+  top: 5px;
+  left: 5px;
   font-size: 12px;
 }
 
 .Player-back button {
   text-decoration: none;
   color: white;
-  background-color: transparent;
+  background: rgba(0, 0, 0, .3);
+  padding: 5px;
+  border-radius: 5px;
   border: 0;
   outline: 0;
   cursor: pointer;

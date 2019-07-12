@@ -4,7 +4,6 @@ import Login from '../containers/Login';
 import Register from '../containers/Register';
 import NotFount from '../containers/NotFount';
 
-
 const routes = [
   {
     path: '/',
