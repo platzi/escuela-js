@@ -4,57 +4,62 @@ Clase 1.
 
  - Presentación
  - Descripción del Proyecto
-  - Basado en Node 10.*
-  - Que es Server Side Rendering (SSR)
- - Herramientas a utilizar
-  - Express
-  - Babel
-  - Dotenv
 
 Clase 2.
-  Creando Proyecto Base
+  ¿Qué es SSR Server Side Rendering?
 
 Clase 3.
-  Preparando Webpack
-    - Eslint
-    - Babel
-    - Sass
-    - Assets
+- Herramientas a utilizar
+  - Babel
+  - Express
+  - React
 
 Clase 4.
+  Creando Proyecto Base
+
+Clase 5.
+  Preparacion Webpack
+    - Eslint
+
+Clase 6.
+  Preparacion Webpack
+    - Babel
+    - Sass
+
+Clase 7.
   Plugins en Webpack
     - Vendor File
     - Plugins
 
-Clase 5.
+Clase 8.
   Integrando Webpack con Express
 
 > Modulo 2. Integrando Frontend
 
-Clase 6.
+Clase 9.
   Sirviendo React desde Express
     - Frontend entry
     - Preparar reducers
     - Sirviendo desde ruta
 
-Clase 7.
+Clase 10.
   Redux Dev Tools
 
-Clase 8.
+Clase 11.
   Sirviendo estilos
 
-Clase 9.
+Clase 12.
   Integrando con React Router
 
 > Modulo 3. Server Side Rendering
 
-Clase 10. 
+Clase 13. 
   ¿ Por que renderizar desde el servidor ?
 
-Clase 11.
+Clase 14.
   Renderizando desde el servidor
 
-Clase 12.
+Clase 15.
   Validaciones en el server
 
 Clase 13.
@@ -79,6 +84,7 @@ Clase 14.
 
   Clase 19.
     Configurando hashes a nuestros assets
+
 > Modulo 5. Integrando con proyecto de React + Redux
 
   Clase 20.
@@ -89,4 +95,3 @@ Clase 14.
 
   Clase 22.
     Assets require hook
-> Modulo 6. Bonus: Creando un CLI para reusar proyectos. 
