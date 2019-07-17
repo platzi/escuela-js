@@ -74,7 +74,7 @@ app.post('/auth/sign-in/', async (req, res, next) => {
   passport.authenticate('basic', async (error, data) => {
     try {
       if (error || !data) {
-        next(boom.unauthorized());
+        return next(boom.unauthorized());
       }
 
       req.login(data, { session: false }, async (error) => {

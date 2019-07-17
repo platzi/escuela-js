@@ -36,7 +36,7 @@ export const login = ({ email, password }) => {
       url: '/auth/sign-in/',
       method: 'post',
       auth: {
-        email,
+        username: email,
         password,
       },
     })
