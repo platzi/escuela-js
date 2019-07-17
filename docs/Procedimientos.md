@@ -110,40 +110,174 @@ Clase 9.
       </html>
     `);
     ```
+  Demostrar que el sitio no tiene SSR en este punto
 
 Clase 10.
-  Redux Dev Tools
+  Agregando variables de sass desde webpack
+  ```
+  {
+    loader: 'sass-loader',
+    options: {
+      data: `@import "${path.resolve(__dirname, 'src/frontend/assets/styles/vars.scss')}";`,
+    },
+  },
+  ```
 
 Clase 11.
-  Sirviendo estilos
+  - Aplicando history y creando rutas para el servidor
+    - Instalar: 
+    `yarn add history`
+    - Importar
+      ```
+        import { Router } from 'react-router';
+        import { createBrowserHistory } from 'history';
+      ```
+     Definir: `const history = createBrowserHistory();`
+    - Hacer Wrapper:
+    `<Router history={history}>`
 
-Clase 12.
-  - Crear rutas
+Clase 12. 
+  Haciendo initialState accesible y configurando redux dev tools
+  - URL
+    https://github.com/zalmoxisus/redux-devtools-extension
+  - Importar applyMiddleware, compose
+    `import { createStore, compose } from 'redux';`
+  - Creando el composeEnhancers
+    `const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;`
+  - Agregar el compose enhancers
+    `composeEnhancers()`
 
-Clase 13. 
-  ¿ Por que renderizar desde el servidor ?
-
-Clase 14. 
+Clase 13.
   - Crear metodo de carga del React y las rutas
-  - Crear metodo de renderizado
+    El static router es un enrutador que nunca cambia, es importante en el server side render por que al ser estatico la ruta de nuestro app no va a cambiar.
 
-Clase 15.
+    ```
+    import React from 'react';
+    import { renderToString } from 'react-dom/server';
+    import { createStore } from 'redux';
+    import { Provider } from 'react-redux';
+    import { StaticRouter } from 'react-router';
+    import { renderRoutes } from 'react-router-config';
+    import Routes from '../../frontend/routes/serverRoutes';
+    import render from '../render';
+    import Layout from '../../frontend/components/Layout';
+    import reducer from '../../frontend/reducers';
+    import initialState from '../../frontend/initialState';
+
+    const main = (req, res, next) => {
+      try {
+        const store = createStore(reducer, initialState);
+        const html = renderToString(
+          <Provider store={store}>
+            <StaticRouter
+              location={req.url}
+              context={{}}
+            >
+              <Layout>
+                {renderRoutes(Routes)}
+              </Layout>
+            </StaticRouter>
+          </Provider>,
+        );
+        res.send(render(html));
+      } catch (err) {
+        next(err);
+      }
+    };
+
+    export default main;
+    ```
+  - Crear metodo de renderizado
+    const render = (html) => {
+    ```
+    return (`
+      <!doctype html>
+        <html>
+          <head>
+            <title>Platzi Video</title>
+            <link rel="stylesheet" href="assets/app.css" type="text/css"/>
+          </head>
+          <body>
+            <div id="app">${html}</div>
+            <script src="assets/app.js" type="text/javascript"></script>
+            <script src="assets/vendor.js" type="text/javascript"></script>
+          </body>
+      </html>
+    `);
+  };
+
+  export default render;
+  ```
+
+Clase 14.
   - Enseñar a validar con el `typeof window !== 'undefined'`
 
-Clase 16.
+Clase 15.
   - Agregar metodo hydrate
+    Es parecido al metodo `render` pero en este caso es usado para hidratar el contenido previamente renderizado a string con `renderToString`.
+
+    Que hidrata ?
+    Eventos y cualquier otra cosa que no exista del lado del servidor.
+  - Estado de Redux desde Express
+      https://redux.js.org/recipes/server-rendering
+
+    - Enviar preloadedState  en el metodo `render` con 
+      `const preloadedState = store.getState();`
+  
+    - Agregar el preloadedState en el template
+      ```
+      <script>window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}</script>
+      ```
+  - En el frontend
+    Quitar el initialState y agregar: 
+    `const preloadedState = window.__PRELOADED_STATE__;`
+Clase 16.
+  https://helmetjs.github.io/
+  Instalar helmet
+  `yarn add helmet`
+  ```
+    console.log('Loading production configs');
+    app.use(helmet());
+    app.use(helmet.permittedCrossDomainPolicies());
+    app.disable('x-powered-by');
+  ```
+  `x-powered-by` evita que se pueda reconocer que nuestro servidor esta hecho en express.
 
 Clase 17.
-  - Reemplazar initialState por preloadedState
-  - Hacer set del preloadedStateDesde el template
+  - Validar el devTools en el cliente
+    `if (process.env.NODE_ENV === 'production') composeEnhancers = compose;`
+  - Validar webpack
+    ```
+      const dotenv = require('dotenv');
+      dotenv.config();
+    ```
+    Parar y explicar los devtools por encima
+      https://webpack.js.org/configuration/devtool/
+    ```
+    devtool: process.env.NODE_ENV === 'production' ?
+      'cheap-module-eval-source-map' : 'cheap-source-map',
+    ```
+    ```
+      mode: process.env.NODE_ENV ? process.env.NODE_ENV : 'development',
+    ```
+    ```
+      path: process.env.NODE_ENV === 'production' ?
+        path.join(process.cwd(), './src/server/public') : '/',
+    ```
+    Parar y aqui agregar el: 
+      `app.use(express.static(`${__dirname}/public`));`
+    - Agregar el terser plugin: 
+      https://github.com/webpack-contrib/terser-webpack-plugin
+      ```
+        const TerserPlugin = require('terser-webpack-plugin');
 
-Clase 18.
-  Instalar helmet
-
-Clase 19.
-  Validar en el entry
-
-Clase 20. 
+        module.exports = {
+          optimization: {
+            minimizer: [new TerserPlugin()],
+          },
+        };
+      ```
+Clase 18. 
   - Compresion de assets
   - Validacion en express
   ```

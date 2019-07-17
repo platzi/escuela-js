@@ -38,60 +38,40 @@ Clase 8.
 
 Clase 9.
   Sirviendo React desde Express
-    - Frontend entry
-    - Preparar reducers
-    - Sirviendo desde ruta
 
 Clase 10.
-  Redux Dev Tools
+  Agregando variables de sass desde webpack
 
 Clase 11.
-  Sirviendo estilos
-
-Clase 12.
-  Integrando con React Router
+  Aplicando history y creando rutas para el servidor
 
 > Modulo 3. Server Side Rendering
 
-Clase 13. 
-  ¿ Por que renderizar desde el servidor ?
-
-Clase 14.
-  Renderizando desde el servidor
-
-Clase 15.
-  Validaciones en el server
+Clase 12.
+  Haciendo initialState accesible y configurando Redux Dev Tools
 
 Clase 13.
-  Hydrate
+  Renderizando desde el servidor
 
 Clase 14.
-  Enviando estado de Redux
+  Validaciones especificas para el Server Render
+
+Clase 15.
+  Hydrate y estado de Redux desde Express 
 
 > Modulo 4. Entornos de trabajo
 
-  Clase 15. 
-    Validando nuestro servidor
+  Clase 16. 
+    Configurando nuestro servidor para producción
 
-  Clase 16.
-    Validando el frontend
-  
   Clase 17.
+    Configurando el frontend y webpack para producción
+  
+  Clase 18.
     Compresion de nuestos assets
 
-  Clase 18.
+  Clase 19.
     Preparando webpack para el server
 
-  Clase 19.
-    Configurando hashes a nuestros assets
-
-> Modulo 5. Integrando con proyecto de React + Redux
-
   Clase 20.
-    Integrando archivos
-  
-  Clase 21.
-    Añadiendo vars por defecto
-
-  Clase 22.
-    Assets require hook
+    Assets require hook  
