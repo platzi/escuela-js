@@ -325,3 +325,46 @@ Clase 22.
   });
 
   ```
+
+Compresion de assets.
+  `yarn add compression-webpack-plugin`
+  ```
+    const CompressionPlugin = require('compression-webpack-plugin');
+
+    new CompressionPlugin({
+      test: /\.js$|\.css$/,
+      filename: '[path].gz',
+    }),
+  ```  
+
+  Explicar que al momendo de enviar a prod se va a activar la compresion gzip para que el navegador funcione con esto.
+
+  Agregando Hashes.
+  - Agregar hashes a nuestros entries.
+
+  ```
+    const ManifestPlugin = require('webpack-manifest-plugin');
+    new ManifestPlugin(),
+  ```  
+
+  - Crear metodo de getManifest:
+    ```
+    import fs from 'fs';
+
+    const getManifest = () => JSON.parse(fs.readFileSync(`${__dirname}/public/manifest.json`, 'utf8'));
+
+    export default getManifest;
+
+    ```
+
+  - Llamar dentro de render
+    ```
+    import getManifest from '../getManifest';
+
+    const files = getManifest();
+    ```
+
+  - Importar en template:
+    ```
+    ${files['main.css']}
+    ```
