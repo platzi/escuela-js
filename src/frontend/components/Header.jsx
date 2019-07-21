@@ -29,16 +29,18 @@ const Header = (props) => {
       <Link to='/'>
         <img className='header__img' src={logo} alt='Platzi Video' />
       </Link>
-      <div className='header__menu'>
-        <div className='header__menu--profile'>
-          {hasUser ? <img src={gravatar(user.email)} alt={user.email} /> : <img src={userIcon} alt='Usuario' />}
-          <p>Perfil</p>
+      {!isLogin && isRegister && (
+        <div className='header__menu'>
+          <div className='header__menu--profile'>
+            {hasUser ? <img src={gravatar(user.email)} alt={user.email} /> : <img src={userIcon} alt='Usuario' />}
+            <p>Perfil</p>
+          </div>
+          <ul>
+            {hasUser ? <li><a href='/'>{user.name}</a></li> : null}
+            {hasUser ? <li><a href='#logout' onClick={handleLogout}>Cerrar Sesión</a></li> : <li><Link to='login'>Iniciar Sesión</Link></li>}
+          </ul>
         </div>
-        <ul>
-          {hasUser ? <li><a href='/'>{user.name}</a></li> : null}
-          {hasUser ? <li><a href='#logout' onClick={handleLogout}>Cerrar Sesión</a></li> : <li><Link to='login'>Iniciar Sesión</Link></li>}
-        </ul>
-      </div>
+      )}
     </header>
   );
 };
