@@ -11,7 +11,8 @@
     "start:dev": "nodemon src/server/index.js --exec babel-node --plugins transform-class-properties --ignore components --progress",
     "build": "webpack-cli --config webpack.config.js --colors",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "jest": {
     "moduleNameMapper": {
@@ -52,7 +53,6 @@
     "redux-devtools": "3.5.0",
     "sass-loader": "7.1.0",
     "style-loader": "0.23.1",
-    "supertest": "^4.0.2",
     "transfer-webpack-plugin": "0.1.4",
     "url-loader": "2.0.0",
     "webpack": "4.34.0",
