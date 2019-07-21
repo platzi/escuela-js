@@ -1,12 +1,10 @@
 const webpack = require('webpack');
 const path = require('path');
-const dotenv = require('dotenv');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TransferWebpackPlugin = require('transfer-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const CompressionPlugin = require('compression-webpack-plugin');
-
-dotenv.config();
+require('dotenv').config();
 
 module.exports = {
   devtool: process.env.NODE_ENV === 'production' ?

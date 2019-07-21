@@ -1,26 +1,26 @@
 import fs from 'fs';
 import express from 'express';
-import dotenv from 'dotenv';
-import webpack from 'webpack';
-import helmet from 'helmet';
 import axios from 'axios';
 import passport from 'passport';
 import boom from '@hapi/boom';
 import cookieParser from 'cookie-parser';
+import dotenv from 'dotenv';
+import webpack from 'webpack';
+import helmet from 'helmet';
 import main from './routes/main';
 
 dotenv.config();
 
-const ENV = process.env.NODE_ENV;
 const app = express();
+const ENV = process.env.NODE_ENV;
 const PORT = process.env.PORT || 3000;
+
+// Basic strategy
+require('./utils/auth/strategies/basic');
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(`${__dirname}/public`));
-
-// Basic strategy
-require('./utils/auth/strategies/basic');
 
 if (ENV === 'development') {
   console.log('Loading Development Config');
@@ -105,7 +105,4 @@ app.post('/auth/sign-up', async (req, res, next) => {
 
 app.get('*', main);
 
-app.listen(PORT, (err) => {
-  if (err) console.log(err);
-  console.log(`Server running on port ${PORT}`);
-});
+module.exports = app;

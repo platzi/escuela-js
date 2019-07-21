@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Categories component Matches the snapshot 1`] = `
+<div
+  className="Categories"
+>
+  <h3
+    className="categories__title"
+  />
+</div>
+`;

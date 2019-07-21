@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Register component Matches the snapshot 1`] = `
+Array [
+  <header
+    className="header isRegister"
+  >
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <img
+        alt="Platzi Video"
+        className="header__img"
+        src="test-file-stub"
+      />
+    </a>
+    <div
+      className="header__menu"
+    >
+      <div
+        className="header__menu--profile"
+      >
+        <img
+          alt="Usuario"
+          src="test-file-stub"
+        />
+        <p>
+          Perfil
+        </p>
+      </div>
+      <ul>
+        <li>
+          <a
+            href="/login"
+            onClick={[Function]}
+          >
+            Iniciar Sesión
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>,
+  <section
+    className="register"
+  >
+    <section
+      className="register__container"
+    >
+      <h2>
+        Regístrate
+      </h2>
+      <form
+        className="register__container--form"
+        onSubmit={[Function]}
+      >
+        <input
+          className="input"
+          name="name"
+          onChange={[Function]}
+          placeholder="Nombre"
+          type="text"
+        />
+        <input
+          className="input"
+          name="email"
+          onChange={[Function]}
+          placeholder="Correo"
+          type="text"
+        />
+        <input
+          className="input"
+          name="password"
+          onChange={[Function]}
+          placeholder="Contraseña"
+          type="password"
+        />
+        <button
+          className="button"
+          type="submit"
+        >
+          Registrarme
+        </button>
+      </form>
+      <a
+        className="register__container--login"
+        href="/login"
+        onClick={[Function]}
+      >
+        Iniciar sesión
+      </a>
+    </section>
+  </section>,
+]
+`;

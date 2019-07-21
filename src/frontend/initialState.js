@@ -1,9 +1,5 @@
 export default {
-  'user': {
-    'id': 1,
-    'name': 'Oscar Barajas',
-    'email': 'oscar@dragons.mx',
-  },
+  'user': {},
   'myList': [],
   'trends': [
     {

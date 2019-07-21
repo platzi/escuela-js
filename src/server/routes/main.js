@@ -1,10 +1,9 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 import { renderRoutes } from 'react-router-config';
-import thunk from 'redux-thunk';
 import Routes from '../../frontend/routes/serverRoutes';
 import render from '../render';
 import Layout from '../../frontend/components/Layout';
@@ -13,7 +12,8 @@ import initialState from '../../frontend/initialState';
 
 const main = async (req, res, next) => {
   try {
-    const store = createStore(reducer, initialState, compose(applyMiddleware(thunk)));
+    const isLogged = (initialState.user.id);
+    const store = createStore(reducer, initialState);
     const html = renderToString(
       <Provider store={store}>
         <StaticRouter
@@ -21,7 +21,7 @@ const main = async (req, res, next) => {
           context={{}}
         >
           <Layout>
-            {renderRoutes(Routes)}
+            {renderRoutes(Routes(isLogged))}
           </Layout>
         </StaticRouter>
       </Provider>,

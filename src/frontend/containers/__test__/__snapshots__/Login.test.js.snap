@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login component Matches the snapshot 1`] = `
+Array [
+  <header
+    className="header isLogin"
+  >
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <img
+        alt="Platzi Video"
+        className="header__img"
+        src="test-file-stub"
+      />
+    </a>
+    <div
+      className="header__menu"
+    >
+      <div
+        className="header__menu--profile"
+      >
+        <img
+          alt="Usuario"
+          src="test-file-stub"
+        />
+        <p>
+          Perfil
+        </p>
+      </div>
+      <ul>
+        <li>
+          <a
+            href="/login"
+            onClick={[Function]}
+          >
+            Iniciar Sesión
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>,
+  <section
+    className="login"
+  >
+    <section
+      className="login__container"
+    >
+      <h2>
+        Inicia sesión
+      </h2>
+      <form
+        className="login__container--form"
+        onSubmit={[Function]}
+      >
+        <input
+          className="input"
+          name="email"
+          onChange={[Function]}
+          placeholder="Correo"
+          type="text"
+        />
+        <input
+          className="input"
+          name="password"
+          onChange={[Function]}
+          placeholder="Contraseña"
+          type="password"
+        />
+        <button
+          className="button"
+          type="submit"
+        >
+          Iniciar sesión
+        </button>
+        <div
+          className="login__container--remember-me"
+        >
+          <label
+            htmlFor="first_checkbox"
+          >
+            <input
+              id="cbox1"
+              type="checkbox"
+              value="first_checkbox"
+            />
+            Recuérdame
+          </label>
+          <a
+            href="/"
+          >
+            Olvidé mi contraseña
+          </a>
+        </div>
+      </form>
+      <section
+        className="login__container--social-media"
+      >
+        <div>
+          <img
+            alt="Google"
+            src="test-file-stub"
+          />
+           
+          Inicia sesión con Google
+        </div>
+        <div>
+          <img
+            alt="Twitter"
+            src="test-file-stub"
+          />
+           
+          Inicia sesión con Twitter
+        </div>
+      </section>
+      <p
+        className="login__container--register"
+      >
+        No tienes ninguna cuenta
+         
+        <a
+          href="/register"
+          onClick={[Function]}
+        >
+          Regístrate
+        </a>
+      </p>
+    </section>
+  </section>,
+]
+`;

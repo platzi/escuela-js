@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout component Matches the snapshot 1`] = `
+<section
+  className="main"
+>
+  <h2
+    className="main__title"
+  >
+    ¿Qué quieres ver hoy?
+  </h2>
+  <input
+    className="input"
+    placeholder="Buscar..."
+    type="text"
+  />
+</section>
+`;
