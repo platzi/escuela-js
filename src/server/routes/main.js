@@ -14,19 +14,41 @@ require('dotenv').config();
 
 const main = async (req, res, next) => {
   try {
-    let movieList = await axios.get(`${process.env.API_URL2}/api/movies`);
-    movieList = movieList.data.data;
-    const initialState = {
-      user: {
-        id: 1,
-        name: 'Carlos Sampol',
-        email: 'sampol.90@gmail.com',
-      },
-      playing: {},
-      myList: movieList.slice(1, 7),
-      trends: movieList.slice(1, movieList.length - 1),
-      originals: movieList.slice(1, movieList.length - 1),
-    };
+    let initialState;
+    const { token, email, name, id } = req.cookies;
+    try {
+      let movieList = await axios({
+        url: `${process.env.API_URL}/api/movies`,
+        headers: { Authorization: `Bearer ${token}` },
+        method: 'get',
+      });
+
+      let userMovies = await axios({
+        url: `${process.env.API_URL}/api/movies?userId=${id}`,
+        headers: { Authorization: `Bearer ${token}` },
+        method: 'get',
+      });
+
+      movieList = movieList.data.data;
+      userMovies = userMovies.data.data;
+      initialState = {
+        user: {
+          id,
+          email,
+          name,
+        },
+        myList: userMovies.filter(movie => movie._id === id),
+        trends: movieList.filter(movie => movie.contentRating === 'PG' && movie._id),
+        originals: movieList.filter(movie => movie.contentRating === 'G' && movie._id),
+      };
+    } catch (err) {
+      initialState = {
+        user: {},
+        myList: [],
+        trends: [],
+        originals: [],
+      };
+    }
     const isLogged = (initialState.user.id);
     const store = createStore(reducer, initialState);
     const html = renderToString(

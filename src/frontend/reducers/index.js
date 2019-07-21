@@ -14,7 +14,9 @@ const reducer = (state, action) => {
     case 'REGISTER_REQUEST':
     case 'LOGOUT_REQUEST':
       return {
-        ...state,
+        trends: action.payload,
+        originals: action.payload,
+        myList: action.payload,
         user: action.payload,
       };
     case 'GET_VIDEO_SOURCE':

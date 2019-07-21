@@ -17,6 +17,8 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(`${__dirname}/public`));
 
 // Basic strategy
@@ -61,7 +63,7 @@ app.use((req, res, next) => {
 });
 
 app.post('/auth/sign-in', async (req, res, next) => {
-  passport.authenticate('basic', (error, data) => {
+  passport.authenticate('basic', async (error, data) => {
     try {
       if (error || !data) {
         return next(boom.unauthorized());
@@ -78,8 +80,7 @@ app.post('/auth/sign-in', async (req, res, next) => {
           httpOnly: !(ENV === 'development'),
           secure: !(ENV === 'development'),
         });
-
-        res.status(200).json(user);
+        res.status(200).json(user.user);
       });
     } catch (error) {
       next(error);
@@ -89,15 +90,18 @@ app.post('/auth/sign-in', async (req, res, next) => {
 
 app.post('/auth/sign-up', async (req, res, next) => {
   const { body: user } = req;
-
   try {
-    await axios({
+    const userData = await axios({
       url: `${process.env.API_URL}/api/auth/sign-up`,
       method: 'post',
       data: user,
     });
-
-    res.status(201).json({ message: 'user created' });
+    console.log(userData);
+    res.status(201).json({
+      name: req.body.name,
+      email: req.body.email,
+      id: userData.data.data,
+    });
   } catch (error) {
     next(error);
   }

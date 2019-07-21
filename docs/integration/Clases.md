@@ -17,21 +17,23 @@
   - Clase 8.
     - Session Middleware
   - Clase 9.
+    - Cerrar sesión
+  - Clase 10.
     - Fetch de estado inicial
 > Modulo 3. Tests a nuestra App
-  - Clase 10.
-    - Configuración y File mocks
   - Clase 11.
-    - Testing a un Componente
+    - Configuración y File mocks
   - Clase 12.
-    - Creando Mocks del store
+    - Testing a un Componente
   - Clase 13.
-    - Probando Componente conectado a Redux
+    - Creando Mocks del store
   - Clase 14.
-    - Probando envio de formulario
+    - Probando Componente conectado a Redux
   - Clase 15.
-    - Probando acciones
+    - Probando envio de formulario
   - Clase 16.
+    - Probando acciones
+  - Clase 17.
     - Probando acciones asincronas
 
 > Modulo 4. Despliegue del Frontend

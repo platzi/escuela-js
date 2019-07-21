@@ -10,10 +10,12 @@ export const loginRequest = payload => ({
   payload,
 });
 
-export const logoutRequest = payload => ({
-  type: 'LOGOUT_REQUEST',
-  payload,
-});
+export const logoutRequest = (payload) => {
+  return {
+    type: 'LOGOUT_REQUEST',
+    payload,
+  };
+};
 
 export const registerRequest = payload => ({
   type: 'REGISTER_REQUEST',
@@ -38,14 +40,23 @@ export const setError = payload => ({
 //Thunks
 export const loginUser = ({ email, password }, redirectUrl) => {
   return (dispatch) => {
-    axios.post('/auth/sign-in', {
+    axios({
+      url: '/auth/sign-in/',
+      method: 'post',
       auth: {
         username: email,
         password,
       },
     })
-      .then(({ data }) => dispatch(loginRequest(data)))
-      .then(() => redirectUrl())
+      .then(({ data }) => {
+        document.cookie = `email=${data.email};`;
+        document.cookie = `name=${data.name};`;
+        document.cookie = `id=${data.id}`;
+        dispatch(loginRequest(data));
+      })
+      .then(() => {
+        window.location.href = redirectUrl;
+      })
       .catch(err => dispatch(setError(err)));
   };
 };
@@ -54,7 +65,9 @@ export const registerUser = (payload, redirectUrl) => {
   return (dispatch) => {
     axios.post('/auth/sign-up', payload)
       .then(({ data }) => dispatch(registerRequest(data)))
-      .then(() => redirectUrl())
+      .then(() => {
+        window.location.href = redirectUrl;
+      })
       .catch(err => dispatch(setError(err)));
   };
 };

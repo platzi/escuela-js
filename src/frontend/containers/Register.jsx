@@ -22,8 +22,9 @@ const Register = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.registerUser(form, props.history.push('/'));
+    props.registerUser(form, '/login');
   };
+
   return (
     <>
       <Header isRegister />
