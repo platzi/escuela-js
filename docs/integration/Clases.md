@@ -13,9 +13,9 @@
   - Clase 6.
     - Registro de usuario
   - Clase 7.
-    - Inicio de sesión
+    - Validación de rutas
   - Clase 8.
-    - Session Middleware
+    - Inicio de sesión
   - Clase 9.
     - Cerrar sesión
   - Clase 10.

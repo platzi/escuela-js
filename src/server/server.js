@@ -54,14 +54,6 @@ if (ENV === 'development') {
   app.disable('x-powered-by');
 }
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,X-CSRFToken');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
-
 app.post('/auth/sign-in', async (req, res, next) => {
   passport.authenticate('basic', async (error, data) => {
     try {
@@ -96,7 +88,6 @@ app.post('/auth/sign-up', async (req, res, next) => {
       method: 'post',
       data: user,
     });
-    console.log(userData);
     res.status(201).json({
       name: req.body.name,
       email: req.body.email,
