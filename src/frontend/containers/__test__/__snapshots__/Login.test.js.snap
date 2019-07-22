@@ -15,31 +15,6 @@ Array [
         src="test-file-stub"
       />
     </a>
-    <div
-      className="header__menu"
-    >
-      <div
-        className="header__menu--profile"
-      >
-        <img
-          alt="Usuario"
-          src="test-file-stub"
-        />
-        <p>
-          Perfil
-        </p>
-      </div>
-      <ul>
-        <li>
-          <a
-            href="/login"
-            onClick={[Function]}
-          >
-            Iniciar Sesión
-          </a>
-        </li>
-      </ul>
-    </div>
   </header>,
   <section
     className="login"

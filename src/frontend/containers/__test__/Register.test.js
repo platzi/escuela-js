@@ -17,15 +17,15 @@ describe('Register component', () => {
     expect(register.toJSON()).toMatchSnapshot();
   });
 
-  it('Calls and Executes pushFunction function when Register form is submitted', () => {
-    const pushFunction = jest.fn();
+  it('Calls and Executes preventDefault function when Register form is submitted', () => {
+    const preventDefault = jest.fn();
     const wrapper = mount(
       <ProviderMock>
-        <Register history={{ push: pushFunction }} />
+        <Register />
       </ProviderMock>,
     );
-    wrapper.find('form').simulate('submit');
-    expect(pushFunction).toHaveBeenCalledTimes(1);
+    wrapper.find('form').simulate('submit', { preventDefault });
+    expect(preventDefault).toHaveBeenCalledTimes(1);
     wrapper.unmount();
   });
 

@@ -24,7 +24,7 @@
   - Clase 11.
     - Configuración y File mocks
   - Clase 12.
-    - Testing a un Componente
+    - Probando Componente
   - Clase 13.
     - Creando Mocks del store
   - Clase 14.
@@ -34,6 +34,8 @@
   - Clase 16.
     - Probando acciones
   - Clase 17.
-    - Probando acciones asincronas
-
+    - Probando Gravatar function
+  - Clase 18.
+   - Jest Coverage
 > Modulo 4. Despliegue del Frontend
+

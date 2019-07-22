@@ -1,8 +1,8 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-import { render, configure } from 'enzyme';
+import { render, configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Footer from '../Layout';
+import Footer from '../Footer';
 
 configure({ adapter: new Adapter() });
 
@@ -13,7 +13,7 @@ describe('Footer component', () => {
   });
 
   test('Footer haves class footer', () => {
-    const footer = render(<Footer />);
+    const footer = shallow(<Footer />);
     const footerElm = footer.find('footer');
     expect(footerElm.hasClass('footer')).toBe(true);
   });

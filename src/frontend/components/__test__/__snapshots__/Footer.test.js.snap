@@ -1,27 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Footer component Matches the snapshot 1`] = `
-<div
-  className="App"
+<footer
+  className="footer"
 >
-  <footer
-    className="footer"
+  <a
+    href="/"
   >
-    <a
-      href="/"
-    >
-      Terminos de uso
-    </a>
-    <a
-      href="/"
-    >
-      Declaración de privacidad
-    </a>
-    <a
-      href="/"
-    >
-      Centro de ayuda
-    </a>
-  </footer>
-</div>
+    Terminos de uso
+  </a>
+  <a
+    href="/"
+  >
+    Declaración de privacidad
+  </a>
+  <a
+    href="/"
+  >
+    Centro de ayuda
+  </a>
+</footer>
 `;

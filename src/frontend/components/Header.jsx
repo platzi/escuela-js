@@ -29,7 +29,7 @@ const Header = (props) => {
       <Link to='/'>
         <img className='header__img' src={logo} alt='Platzi Video' />
       </Link>
-      {!isLogin && isRegister && (
+      {!isLogin && !isRegister && (
         <div className='header__menu'>
           <div className='header__menu--profile'>
             {hasUser ? <img src={gravatar(user.email)} alt={user.email} /> : <img src={userIcon} alt='Usuario' />}

@@ -17,15 +17,15 @@ describe('Login component', () => {
     expect(login.toJSON()).toMatchSnapshot();
   });
 
-  it('Calls and Executes pushFunction function when Login form is submitted', () => {
-    const pushFunction = jest.fn();
+  it('Calls and Executes preventDefault function when Login form is submitted', () => {
+    const preventDefault = jest.fn();
     const wrapper = mount(
       <ProviderMock>
-        <Login history={{ push: pushFunction }} />
+        <Login />
       </ProviderMock>,
     );
-    wrapper.find('form').simulate('submit');
-    expect(pushFunction).toHaveBeenCalledTimes(1);
+    wrapper.find('form').simulate('submit', { preventDefault });
+    expect(preventDefault).toHaveBeenCalledTimes(1);
     wrapper.unmount();
   });
 });

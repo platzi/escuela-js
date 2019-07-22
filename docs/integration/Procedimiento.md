@@ -259,4 +259,208 @@ Clase 4.
         };
       ```
   - Clase 11.
-  
+    - Instalar:
+      `yarn add babel-jest jest enzyme-adapter-react-16 enzyme react-test-renderer`
+    - Crear scripts para jest
+      ```
+        "test": "jest",
+        "test:watch": "jest --watch"
+      ```
+    - Configurar mock files:
+      ```
+        "jest": {
+          "moduleNameMapper": {
+            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/frontend/__mocks__/fileMock.js",
+            "\\.(scss|sass)$": "<rootDir>/src/frontend/__mocks__/styleMock.js"
+          }
+        },
+      ```
+  - Clase 12.
+    - Probando Header
+      ```
+        import React from 'react';
+        import { create } from 'react-test-renderer';
+        import Header from '../Layout';
+
+        describe('Header component', () => {
+          test('Matches the snapshot', () => {
+            const header = create(<Header />);
+            expect(header.toJSON()).toMatchSnapshot();
+          });
+        });
+      ```
+    - Probando Footer
+      ```
+        import React from 'react';
+        import { create } from 'react-test-renderer';
+        import { render, configure, shallow } from 'enzyme';
+        import Adapter from 'enzyme-adapter-react-16';
+        import Footer from '../Footer';
+
+        configure({ adapter: new Adapter() });
+
+        describe('Footer component', () => {
+          test('Matches the snapshot', () => {
+            const footer = create(<Footer />);
+            expect(footer.toJSON()).toMatchSnapshot();
+          });
+
+          test('Footer haves class footer', () => {
+            const footer = shallow(<Footer />);
+            const footerElm = footer.find('footer');
+            expect(footerElm.hasClass('footer')).toBe(true);
+          });
+
+          test('Footer haves 3 anchors', () => {
+            const footer = render(<Footer />);
+            expect(footer.find('a')).toHaveLength(3);
+          });
+        });
+      ```
+  - Clase 13.
+    ```
+      import React from 'react';
+      import { createStore, compose, applyMiddleware } from 'redux';
+      import thunk from 'redux-thunk';
+      import { Provider } from 'react-redux';
+      import { Router } from 'react-router';
+      import { createBrowserHistory } from 'history';
+      import initialState from '../initialState';
+      import reducer from '../reducers';
+
+      const store = createStore(reducer, initialState, compose(applyMiddleware(thunk)));
+      const history = createBrowserHistory();
+
+      const ProviderMock = props => (
+        <Provider store={store}>
+          <Router history={history}>
+            {props.children}
+          </Router>
+        </Provider>
+      );
+
+      module.exports = ProviderMock;
+    ```
+  - Clase 14.
+    ```
+      import React from 'react';
+      import { create } from 'react-test-renderer';
+      import ProviderMock from '../../__mocks__/ProviderMock';
+      import CarouselItem from '../CarouselItem';
+
+      describe('CarouselItem component', () => {
+        test('Matches the snapshot', () => {
+          const carousel = create(
+            <ProviderMock>
+              <CarouselItem />
+            </ProviderMock>,
+          );
+          expect(carousel.toJSON()).toMatchSnapshot();
+        });
+      });
+    ```
+  - Clase 15.
+    ```
+      import React from 'react';
+      import { create } from 'react-test-renderer';
+      import { mount, configure } from 'enzyme';
+      import Adapter from 'enzyme-adapter-react-16';
+      import ProviderMock from '../../__mocks__/ProviderMock';
+      import Register from '../Register';
+
+      configure({ adapter: new Adapter() });
+
+      describe('Register component', () => {
+        test('Matches the snapshot', () => {
+          const register = create(
+            <ProviderMock>
+              <Register />
+            </ProviderMock>,
+          );
+          expect(register.toJSON()).toMatchSnapshot();
+        });
+
+        it('Calls and Executes preventDefault function when Register form is submitted', () => {
+          const preventDefault = jest.fn();
+          const wrapper = mount(
+            <ProviderMock>
+              <Register />
+            </ProviderMock>,
+          );
+          wrapper.find('form').simulate('submit', { preventDefault });
+          expect(preventDefault).toHaveBeenCalledTimes(1);
+          wrapper.unmount();
+        });
+      });
+    ```
+  - Clase 16.
+    - Crear movieMock
+    ```
+      const movieMock = {
+        'id': 2,
+        'slug': 'tvshow-2',
+        'title': 'In the Dark',
+        'type': 'Scripted',
+        'language': 'English',
+        'year': 2009,
+        'contentRating': '16+',
+        'duration': 164,
+        'cover': 'http://dummyimage.com/800x600.png/99118E/ffffff',
+        'description': 'Vestibulum ac est lacinia nisi venenatis tristique',
+        'source': 'https://mdstrm.com/video/58333e214ad055d208427db5.mp4',
+      };
+
+      module.exports = movieMock;
+
+    ```
+    ```
+      import { setFavorite, loginRequest, logoutRequest } from '../index';
+      import movieMock from '../../__mocks__/movieMock';
+
+      describe('Actions', () => {
+        it('Shoul create an action to set a Favorite', () => {
+          const payload = movieMock;
+          const expectedAction = {
+            type: 'SET_FAVORITE',
+            payload,
+          };
+          expect(setFavorite(payload)).toEqual(expectedAction);
+        });
+
+        it('Shoul create an action to logIn', () => {
+          const payload = {
+            email: 'test@test.com',
+            password: 'thisisnotapassword',
+          };
+          const expectedAction = {
+            type: 'LOGIN_REQUEST',
+            payload,
+          };
+          expect(loginRequest(payload)).toEqual(expectedAction);
+        });
+        it('Shoul create an action to logOut', () => {
+          const payload = {};
+          const expectedAction = {
+            type: 'LOGOUT_REQUEST',
+            payload,
+          };
+          expect(logoutRequest(payload)).toEqual(expectedAction);
+        });
+      });
+
+    ```
+  - Clase 17.
+    ```
+      import gravatar from '../gravatar';
+
+      describe('Gravatar function test', () => {
+        it('It Should return gravatar image url', () => {
+          const email = 's@mpol.com';
+          const gravatarPlaceholder = 'https://gravatar.com/avatar/e4ffaa3f7035953e40b6786736fbe544';
+          expect(gravatarPlaceholder).toEqual(gravatar(email));
+        });
+      });
+    ```
+  - Clase 18.
+    Explicar el test coverage
+    `"test:coverage": "jest --coverage"`
