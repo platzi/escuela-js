@@ -270,7 +270,7 @@ Clase 4.
       ```
         "jest": {
           "moduleNameMapper": {
-            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/frontend/__mocks__/fileMock.js",
+            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg)$": "<rootDir>/src/frontend/__mocks__/fileMock.js",
             "\\.(scss|sass)$": "<rootDir>/src/frontend/__mocks__/styleMock.js"
           }
         },
@@ -280,7 +280,7 @@ Clase 4.
       ```
         import React from 'react';
         import { create } from 'react-test-renderer';
-        import Header from '../Layout';
+        import Header from '../Header';
 
         describe('Header component', () => {
           test('Matches the snapshot', () => {
@@ -464,3 +464,77 @@ Clase 4.
   - Clase 18.
     Explicar el test coverage
     `"test:coverage": "jest --coverage"`
+  
+  > Despliegue
+  
+  - Clase 19.
+    - Poner en server.js
+      ```
+      app.use(function (req, res, next) {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,X-CSRFToken');
+        res.setHeader('Access-Control-Allow-Credentials', true);
+        next();
+      });
+      ```
+    - Hacer set en el server de:
+      ```
+        httpOnly: !(ENV === 'development'),
+        secure: !(ENV === 'development'),
+        domain: 'sampoldev.com',
+      ```
+    - Cambiar el Number en el reducer del video.
+    - Creación Droplet D.O
+    - apt-get update && apt-get update
+    - `curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh`
+    - `sudo bash nodesource_setup.sh`
+    - `sudo apt-get install nodejs build-essential npm`
+    - `sudo apt-get install nginx`
+    - Configurar nginx con
+    ```
+        proxy_pass http://localhost:4000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    ```
+    - Habilitar gzip
+      `cd /etc/nginx/`
+      `nano nginx.conf`
+      ```
+      gzip_http_version 1.1;
+      gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+      ```
+    - Probar el archivo de nginx con nginx -t
+    - `sudo systemctl restart nginx`
+    - Hacer set de las keys ssh
+    - Clone del proyecto
+    - Crear .env
+    ```
+      NODE_ENV=production
+      PORT=4000
+      API_URL=https://platzivideo-secured-api.now.sh
+      API_KEY_TOKEN=8120848fff09687543d70d59adb47fe14792bff3dd850d7630acc03571fa8860
+    ```
+    - Hacer build de nuestra aplicación
+    - Correr servidor
+    - `npm install pm2 -g`
+    - `pm2 start src/server/index.js`
+    - Instalando SSL Cert.
+
+    - Ir al setUp de nginx y cambiar el server_name
+      `server_name yourdomain.com www.yourdomain.com;`
+    - Instalar dependencias necesarias
+    ```
+      sudo apt update
+      sudo apt install software-properties-common
+      sudo add-apt-repository ppa:certbot/certbot
+      sudo apt update
+      sudo apt install python-certbot-nginx 
+    ```
+    - Lanzar utility de certbot
+      `sudo certbot --nginx`
+    - Reiniciar nginx
+    `sudo service nginx restart`

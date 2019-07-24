@@ -7,8 +7,12 @@
   "author": "Carlos Sampol",
   "license": "MIT",
   "private": true,
+  "engines": {
+    "node": "10.x"
+  },
   "scripts": {
     "start:dev": "nodemon src/server/index.js --exec babel-node --plugins transform-class-properties --ignore components --progress",
+    "start": "node src/server/index.js",
     "build": "webpack-cli --config webpack.config.js --colors",
     "test": "jest",
     "test:watch": "jest --watch",

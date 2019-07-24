@@ -39,3 +39,5 @@
    - Jest Coverage
 > Modulo 4. Despliegue del Frontend
 
+  - Clase 19
+    - Creación del Droplet en D.O
