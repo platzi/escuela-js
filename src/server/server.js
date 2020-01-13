@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 import express from 'express';
 import dotenv from 'dotenv';
+import helmet from 'helmet';
 import webpack from 'webpack';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -19,6 +20,8 @@ dotenv.config();
 const app = express();
 const { ENV, PORT } = process.env;
 
+app.use(express.static(`${__dirname}/public`));
+
 if (ENV === 'development') {
   const webPackConfig = require('../../webpack.config');
   const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -27,6 +30,10 @@ if (ENV === 'development') {
   const serverConfig = { port: PORT, hot: true };
   app.use(webpackDevMiddleware(compiler, serverConfig));
   app.use(webpackHotMiddleware(compiler));
+} else {
+  app.use(helmet());
+  app.use(helmet.permittedCrossDomainPolicies());
+  app.disable('x-powered-by');
 }
 
 const setResponse = (html, preloadedState) => {

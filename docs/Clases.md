@@ -241,6 +241,8 @@
   
   2. Ir al HTML que estamos respondiendo y agregar el llamado a nuestros archivos del build.
 
+  Por ultimo vamos a quitar la configuración del *HtmlWebPackPlugin* en el webpack.
+
   Ahora, si vamos a nuestro navegador podremos ver que nuestra aplicacion esta cargando perfectamente!!
 
   Pero, si revisamos mas a fondo (desabilitando Javascript) podremos ver que aun no tiene SSR aplicado. Para poder aplicarlo primero debemos configurar React Router para el servidor y luego renderizar el app de react desde alli. 
@@ -454,3 +456,77 @@
   `delete window.__PRELOADED_STATE__;`
 
   Vamos a verificar y podremos ver que todo sigue funcionando con el estado enviado desde el lado del servidor y sin exponer nuestros datos en la consola.
+
+## Configurando nuestro servidor para producción
+  Para configurar nuestro servidor para producción solo tenemos que hacer unos pequeños cambios, ya que al momento de configurar nuestro dotenv nos adelantamos un poco.
+
+  Lo primero que debemos hacer es definir un directorio publico para que nuestro build de frontend sea almacenado alli.
+
+  ```app.use(express.static(`${__dirname}/public`));```
+
+  Ya con el directorio publico definido, lo siguiente es apoyarnos de una libreria que nos ayudara a mantener nuestra aplicación segura. 
+
+  Esta aplicación se llama *Helmet* y nos provee de ciertas configuraciones super importantes.
+
+  Para instalarla: `npm install helmet`
+
+  Y para usarla la importamos:
+
+  `import helmet from 'helmet';`
+
+  Y luego agregamos un else statement en el servidor para que agregue ciertas configuraciones como: 
+
+  ```
+    app.use(helmet());
+    app.use(helmet.permittedCrossDomainPolicies());
+    app.disable('x-powered-by');
+  ```
+
+  Por ultimo vamos a nuestro `.gitignore` y vamos a agregar nuestra carpeta publica
+
+## Configurando webpack para producción
+
+  Ya que tenemos nuestro servicio de SSR andando, es momento de hacer ciertas configuraciones para poder llevarlo a producción de manera sencilla.
+
+  Lo primero que debemos hacer es limpiar nuestro `package.json` de scripts que ya no se usaran.
+
+  Quitamos el script de `start` y modificamos el script de `build` por: 
+
+  `"build": "webpack-cli --config webpack.config.js --colors"`
+
+  Si vamos a la consola y ejecutamos este script podremos notar que el resultado del app lo envia a `dist` y eso no nos sirve por que nuestro servidor lo leera de la carpeta `public` que creamos. 
+
+  Para darle el destino correcto primero eliminaremos `dist` y `public` del root de nuestro proyecto. 
+
+  Luego vamos a nuestra configuración de webpack y lo modificamos para que tome ciertas configuraciones dependiendo del entorno en el que estemos.
+
+  Importamos `dotenv` y lo configuramos.
+
+  Luego definimos una constante que nos ayude a determinar si estamos en desarrollo:
+
+  `const isDev = (process.env.ENV === 'development');`
+
+  Cambiamos el modo de webpack a: 
+
+  `mode: isDev ? 'development' : 'production',`
+
+  Cambiamos el entry para que agregue HMR solo cuando estemos en desarrollo, pero tambien haremos un pequeño refactor a la forma en la que se llama.
+
+  ```
+    const entry = ['./src/frontend/index.js'];
+
+    if (isDev) entry.push('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true')
+  ```
+
+  Tambien cambiaremos el *path* del *output* a 
+  `path: isDev ? '/' : path.resolve(__dirname, 'src/server/public'),`
+
+  Ya que tenemos esta configuración lista, es momento de probar que todo funcione como debería.
+
+  Vamos a nuestro `.env` y cambiemos el entorno a *production*
+
+  Luego ejecutamos: `npm run build`
+
+  Y posteriormente ejecutamos en consola: `node src/server`
+
+  Si vamos a nuestro navegador podemos verificar que todo se ejecutó de manera perfecta!

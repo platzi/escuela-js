@@ -75,3 +75,4 @@ yarn-error.log
 # Build
 dist/
 .DS_Store
+src/server/public
