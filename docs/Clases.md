@@ -1,3 +1,20 @@
+# Server Side Render Course
+
+- [Update de dependencias en npm](#update-de-dependencias-en-npm)
+- [Creación del servidor en Express](#creaci-n-del-servidor-en-express)
+- [Usando Nodemon y Dotenv](#usando-nodemon-y-dotenv)
+- [Integración de Webpack con Express](#integraci-n-de-webpack-con-express)
+- [Servir React con Express](#servir-react-con-express)
+- [Abstrayendo React router, creando history y haciendo initialState mas accesible.](#abstrayendo-react-router--creando-history-y-haciendo-initialstate-mas-accesible)
+- [Definicion de la función principal para realizar el renderizado desde el servidor](#definicion-de-la-funci-n-principal-para-realizar-el-renderizado-desde-el-servidor)
+- [Aplicando assets require hook](#aplicando-assets-require-hook)
+- [Hydrate y estado de Redux desde Express](#hydrate-y-estado-de-redux-desde-express)
+- [Configurando nuestro servidor para producción](#configurando-nuestro-servidor-para-producci-n)
+- [Configurando webpack para producción](#configurando-webpack-para-producci-n)
+- [Optimización del Build](#optimizaci-n-del-build)
+- [Aplicar hashes a el nombre de nuestros builds](#aplicar-hashes-a-el-nombre-de-nuestros-builds)
+
+
 ## Update de dependencias en npm 
   
   En esta clase revisaremos las dependencias de nuestro proyecto y las actualizaremos a la ultima versión posible solo con un comando
@@ -521,6 +538,10 @@
   Tambien cambiaremos el *path* del *output* a 
   `path: isDev ? '/' : path.resolve(__dirname, 'src/server/public'),`
 
+  Una ultima cosa a cambiar es nuestro HMR Plugin, dado que estaremos en producción, no es necesario cargarlo. Para validar un plugin sencillamente agregamos la validación de esta manera: 
+
+  `isDev ? new webpack.HotModuleReplacementPlugin() : () => { },`
+  
   Ya que tenemos esta configuración lista, es momento de probar que todo funcione como debería.
 
   Vamos a nuestro `.env` y cambiemos el entorno a *production*
@@ -530,3 +551,123 @@
   Y posteriormente ejecutamos en consola: `node src/server`
 
   Si vamos a nuestro navegador podemos verificar que todo se ejecutó de manera perfecta!
+
+## Optimización del Build
+
+  En casi todos los casos uno de los principales problemas que nos encontraremos al momento de desarrollar es que el peso de nuestros archivos se va a elevar a medida que nuestro proyecto va creciendo y podemos llegar a encontrar *builds*  que pesen hasta 5mb. Esto para descargar en conexiones moviles o muy lentas puede llegar a frustrar a nuestro usuario.
+  
+  La solucion a esto es: 
+
+  .1 Cuidar nuestras instalaciones: No instalemos nada que no sea necesario.
+  .2 Remover lo que no se usa
+  .3 Comprimir nuestros assets. 
+
+  Entonces, si vamos a verificar las primeras dos, vamos a quitar referencias e instalaciones que paquetes que ya no estamos usando.
+
+  Vamos a nuestro `webpack.config.js` y removemos el llamado al`html-loader`
+
+  Removiendo esto vamos a evitar cargar cosas que ya no estamos usando.
+
+  Y ahora, procedemos a limpiar nuestro `package.json`
+
+  Para desinstalar un paquete o varios solo debemos usar el parametro *uninstall*
+
+  Veamos que paquetes ya no estan en uso:
+
+ `npm uninstall html-loader html-webpack-plugin`
+
+ Ahora vamos a comprimir nuestros assets. Para poder hacer esto nos vamos a apoyar de un paquete *compression-webpack-plugin*
+
+ Para instalarlo y usarlo seguiremos las instrucciones que nos da la documentacion del paquete y le aplicaremos un par de configuraciones extra. Que encontraremos dentro de la documentación
+ 
+Primero lo instalaremos:
+
+ `npm install compression-webpack-plugin --save-dev`
+
+Y por ultimo configuraremos nuestro plugin y le diremos que tipo de archivos comprimir y como llamarlos.
+```
+  const CompressionPlugin = require('compression-webpack-plugin');
+
+  new CompressionPlugin({
+    test: /\.js$|\.css$/,
+    filename: '[path].gz',
+  }),
+```
+
+Una vez instalado y configurado vamos a configurar esto para que se aplique unicamente para produccion y luego vamos a probar que genere nuestros assets comprimidos.
+
+Para probarlo solo debemos ir a nuestro archivo `.env` y cambiar el entorno a producción, ejecutamos nuestro comando `npm run build` y en el mismo stack podremos ver la diferencia entre builds.
+
+## Aplicar hashes a el nombre de nuestros builds
+
+Al momento de tener una aplicación web que va a depender de builds para poder funcionar, es muy importante saber nuestro usuario siempre tenga la ultima version.
+
+Por ejem, actualmente nuestra aplicación tiene una serie de archivos que estaran en constante cambio. Estos son el *app.css* y el *app.js*. Una vez el navegador los descargue una vez el los va a guardar en cache y vamos a tener que estar limpiando nuestro cache para que nuestros usuarios siempre tengan la ultima version de nuestro app. 
+
+Aqui entran los hashes. Los hashes es una cadena de caracteres aleatoria que se genera en cada deploy. Con esto garantizamos que cada vez que nuestro usuario entre al sitio y tengamos una version nueva, su navegador descargara el ultimo archivo generado. 
+
+Para poder generar los hashes solo debemos ir a nuestro `webpack.config.js` y agregarle el prefijo `[hash]`. 
+
+Tambien podemos validar el nombre de nuestro archivo para que tenga hashes unicamente en produccion.
+
+Ahora, ya tenemos nuestros hashes generados pero no podemos leerlos. Para poder hacerlo debemos generar un manifest, leer este archivo cada vez que hagamos nuestro build e indicarle a nuestro server cual es el nuevo hash.
+
+Para generar el manifest instalaremos el paquete: `webpack-manifest-plugin`
+
+`npm install --save-dev webpack-manifest-plugin`
+
+Y luego seguiremos las instrucciones para poder usarlo, obviamente agregaremos de una vez la configuracion para que esto se aplique unicamente en nuestro entorno de produccion. 
+
+```
+  const ManifestPlugin = require('webpack-manifest-plugin');
+  isDev ? () => { } : new ManifestPlugin(),
+```
+
+Hacemos nuestro build y probamos que se este generando nuestro *manifest* correctamente
+
+Ahora, ya que nuestro *manifest* se esta creando, debemos acceder a el y enviarlo a nuestra funcion de renderizado. Para hacer esto debemos hacer dos cosas. 
+
+  1. Crear una función para leer nuestro archivo
+  2. Crear un middleware para enviarlo a nuestra funcion de renderizado.
+
+Nuestra funcion de lectura de archivo es muy sencilla, dentro de nuestra carpeta de *server* crearemos un archivo llamado *getManifest* y alli haremos lo siguiente:
+
+```
+import fs from 'fs';
+
+const getManifest = () => {
+  try {
+    return JSON.parse(fs.readFileSync(`${__dirname}/public/manifest.json`, 'utf8'));
+  } catch (error) {
+    return {
+      "main.css": "/assets/app.css",
+      "main.js": "/assets/app.js",
+    };
+  }
+};
+
+export default getManifest;
+```
+Y por ultimo, en nuestro server haremos nuestro middleware para enviar los valores que necesitemos, para esto iremos a nuestro *server.js* y haremos lo siguiente.
+
+```
+import getManifest from './getManifest';
+
+app.use((req, res, next) => {
+  if (!req.hashManifest) req.hashManifest = getManifest();
+  next();
+});
+```
+
+Vamos a aplicar nuestro middleware, en nuestra funcion *renderApp* vamos a pasarle a *setResponse* el manifest que estamos leyendo. 
+
+`res.send(setResponse(html, preloadedState, req.hashManifest));`
+
+Y luego para finalizar vamos a cambiar *setResponse* para que reciba el manifest y lo aplique de la siguiente forma: 
+
+```
+const mainStyles = manifest ? manifest['main.css'] : '/assets/app.css';
+const mainBuild = manifest ? manifest['main.js'] : '/assets/app.js';
+```
+
+Y en el html: `${mainStyles}` y `${mainBuild}`
