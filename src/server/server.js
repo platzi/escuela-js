@@ -4,6 +4,10 @@ import dotenv from 'dotenv';
 import helmet from 'helmet';
 import webpack from 'webpack';
 import React from 'react';
+import axios from 'axios';
+import cookieParser from 'cookie-parser';
+import boom from '@hapi/boom';
+import passport from 'passport';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
@@ -21,6 +25,12 @@ const app = express();
 const { ENV, PORT } = process.env;
 
 app.use(express.static(`${__dirname}/public`));
+app.use(express.json());
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./utils/auth/strategies/basic');
 
 if (ENV === 'development') {
   const webPackConfig = require('../../webpack.config');
@@ -82,6 +92,49 @@ const renderApp = (req, res) => {
   const preloadedState = store.getState();
   res.send(setResponse(html, preloadedState, req.hashManifest));
 };
+
+app.post("/auth/sign-in", async function (req, res, next) {
+  passport.authenticate("basic", function (error, data) {
+    try {
+      if (error || !data) {
+        next(boom.unauthorized());
+      }
+
+      req.login(data, { session: false }, async function (err) {
+        if (err) {
+          next(err);
+        }
+
+        const { token, ...user } = data;
+
+        res.cookie("token", token, {
+          httpOnly: !(ENV === 'development'),
+          secure: !(ENV === 'development'),
+        });
+
+        res.status(200).json(user);
+      });
+    } catch (err) {
+      next(err);
+    }
+  })(req, res, next);
+});
+
+app.post("/auth/sign-up", async function (req, res, next) {
+  const { body: user } = req;
+
+  try {
+    await axios({
+      url: `${process.env.API_URL}/api/auth/sign-up`,
+      method: "post",
+      data: user
+    });
+
+    res.status(201).json({ message: "user created" });
+  } catch (error) {
+    next(error);
+  }
+});
 
 app.get('*', renderApp);
 
