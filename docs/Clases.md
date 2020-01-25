@@ -479,6 +479,8 @@
 
   Lo primero que debemos hacer es definir un directorio publico para que nuestro build de frontend sea almacenado alli.
 
+  Esto debe hacerse en la validación de producción
+
   ```app.use(express.static(`${__dirname}/public`));```
 
   Ya con el directorio publico definido, lo siguiente es apoyarnos de una libreria que nos ayudara a mantener nuestra aplicación segura. 

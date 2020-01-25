@@ -20,8 +20,6 @@ dotenv.config();
 const app = express();
 const { ENV, PORT } = process.env;
 
-app.use(express.static(`${__dirname}/public`));
-
 if (ENV === 'development') {
   const webPackConfig = require('../../webpack.config');
   const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -31,6 +29,7 @@ if (ENV === 'development') {
   app.use(webpackDevMiddleware(compiler, serverConfig));
   app.use(webpackHotMiddleware(compiler));
 } else {
+  app.use(express.static(`${__dirname}/public`));
   app.use((req, res, next) => {
     req.hashManifest = getManifest();
     next();
@@ -41,7 +40,6 @@ if (ENV === 'development') {
 }
 
 const setResponse = (html, preloadedState, manifest) => {
-
   const mainStyles = manifest ? manifest['main.css'] : '/assets/app.css';
   const mainBuild = manifest ? manifest['main.js'] : '/assets/app.js';
 
