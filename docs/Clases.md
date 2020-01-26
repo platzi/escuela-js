@@ -1,5 +1,10 @@
 # Server Side Render Course
 
+- [Introducción y prensentación del curso](#introducci-n-y-prensentaci-n-del-curso)
+- [Requerimientos mínimos](#requerimientos-m-nimos)
+- [Presentación del proyecto del curso](#presentaci-n-del-proyecto-del-curso)
+- [Babel, Express y React](#babel--express-y-react)
+- [¿Qué es SSR Server Side Rendering?](#-qu--es-ssr-server-side-rendering-)
 - [Update de dependencias en npm](#update-de-dependencias-en-npm)
 - [Creación del servidor en Express](#creaci-n-del-servidor-en-express)
 - [Usando Nodemon y Dotenv](#usando-nodemon-y-dotenv)
@@ -14,6 +19,94 @@
 - [Optimización del Build](#optimizaci-n-del-build)
 - [Aplicar hashes a el nombre de nuestros builds](#aplicar-hashes-a-el-nombre-de-nuestros-builds)
 
+## Introducción y prensentación del curso
+  Hola, bienvenido al curso de Server Side Rendering con Express de la escuela de Javascript de Platzi, a lo largo de toda la escuela de javascript aprendiste un monton de cosas que van a asegurar tu futuro como profesional, cosas como:
+
+  1.- Configurar tu entorno de desarrollo
+  2.- Maquetación y buenas practicas al momento de hacer CSS
+  3.- Fundamentos y Javascript Avanzado
+  4.- ReactJS, Redux y  React Router
+  5.- Node.js y autenticación con Passport.js
+
+  Ahora, es momento de que profundicemos un poco en el Frontend y apliquemos una estrategia que va a hacer que la experiencia de tus usarios se incremente exponencialmente.
+
+  Vamos a aplicar Server Side Rendering en PlatziVideo. 
+
+  En este curso aprenderas cosas como: 
+
+  1.- Server tu aplicacion de ReactJS con Express
+  2.- Preparar tu aplicación para producción
+  3.- Generar y usar un manifest de los assets de tu aplicación
+
+  Para este curso debes tener en cuenta que debido a que vamos a estar realizando diversas configuraciones, estas mismas pueden llegar a ser un poco extensas y en algun punto mientras desconectamos algo y lo conectamos de vuelta a nuestro servidor de express pueden verse errores en pantalla. 
+  
+  *Esto es perfectamente normal*
+
+## Requerimientos mínimos
+
+  Para poder avanzar rapidamente y no quedarte estancado en ciertos temas del curso te recomiendo que sepas dominar:
+
+  1.- Node.js
+    Ya que estaremos usando express para poder servir nuestra aplicación
+  2.- Webpack
+    Por que estaremos aplicando y mejorando ciertas configuraciones desde express y desde el archivo de configuración de webpack.
+  3.- React.js
+    Debido a que nuestra aplicación esta en React, es importante tener el contexto de lo que hicimos en cursos anteriores o al menos revisar el proyecto del curso de React, React Router y Redux.
+  4.- Terminal 
+    Manejar la terminal es muy importante, no estaremos haciendo fuera    de lo normal en la terminal, pero si es indispensable conocer los     comandos basicos y manejarse entre directorios.
+
+## Presentación del proyecto del curso 
+
+  Para este curso estaremos usando el proyecto de la Escuela de Javascrip: *PlatziVideo*, esta aplicación está hecha en *React.js*, usa para el enrutamiento *React Router* y para el estado global de la aplicación *Redux*.
+
+## Babel, Express y React
+
+  A lo largo del curso estaremos usando 3 cosas fundamentales que nos permitiran aplicar Server Side Rendering a nuestra aplicación.
+
+  1.- Babel Babel es una herramienta principalmente usada para convertir codigo hecho en ECMAScript 2015 en adelante a una version de Javascript compatible con navegadores viejos y modernos https://babeljs.io/docs/en/
+
+  2.- Express Es un Framework de Node que nos permite realizar aplicaciones web o crear servicios para consumir por otas aplicaciones por ejemplo un API
+
+  3.- React.js Es una libreria creada por Facebook que nos permite crear de manera sencilla componentes interactivos y reutilizables para interfaces de usuario.
+
+## ¿Qué es SSR Server Side Rendering?
+
+  Antes de comenzar a escribir codigo, es importante tener claros dos conceptos fundamentales que nos permitiran tener un mapa mucho mas claro de lo que estaremos haciendo a lo largo del curso. 
+
+  1.- El primero es el CSR o por sus siglas *Client Side Rendering* o *Renderizado desdel el lado del cliente* es el proceso habitual que vivimos al momento de servir una aplicación hecha con React o cualquier otra libreria o framework.
+
+  El proceso para que una aplicación con CSR sea servida en nuestro navegador consta de 4 pasos. 
+
+    1.- Al momento de entrar al sitio, el navegador hace una petición al servidor en donde esta alojada nuestra aplicación en este momento el servidor le responde con un HTML con las instrucciones esenciales para comenzar el proceso de renderizado y referencias a archivos necesarios para que nuestra aplicación pueda ser visible.
+
+    2.- Luego, ya que para poder ejecutar nuestra app, el navegador le pide al servidor los archivos de CSS y de Javascript necesarios. 
+    Y aqui es en donde empieza el dolor del usuario, ya que dependiendo de la conexion en ciertos casos la aplicación puede demorar muchos segundos y el usuario no recibe nada mas que una pantalla en blanco mientras descarga todo lo necesario.
+
+    3.- Luego que los assets han sido descargados nuestro navegador los ejecuta
+
+    4.- Y por ultimo, despues de todo este proceso, el sitio es interactivo.
+
+    Hay casos en los que el CSR es la mejor alternativa pero es importante darle feedback al usuario de que algo se esta haciendo: Un loader por ejemplo.
+
+  2.- Pero, hay otra forma de hacer que nuestro usuario tenga un feedback inmediato sin necesidad de tener un spinner o un mensaje de *Espera*, esta alternativa es el SSR, *Server Side Render* o *Renderizado desde el lado del Servidor*.
+
+  El SSR es una estrategia que nos va a permitir, como ya dijimos antes darle un feedback inmediato a nuestro usuario y que no abandone nuestro sitio por que tarda mucho en cargar.
+
+  Este proceso consta de 4 pasos tambien.
+
+    1.- Al momento de hacer la petición, nuestro servidor no solo va a enviar un HTML con las referencias a nuestros archivos. Si no que tambien va a devolver un pre-renderizado de toda nuestra aplicación para que nuestro usuario tenga un feedback inmediato y pueda ver todo nuestro sitio de manera instantanea. 
+    
+    2.- El navegador renderiza esta información previamente enviada por el servidor y, tambien,  ya que se enviaron las referencias a nuestros assets, el navegador comenzara a descargar los archivos de nuestra app en paralelo. Y asi aprovechamos el feedback que le damos al usario para poder tener los archivos en nuestro cliente.
+
+    3.- Luego de todo esto el navegador pasa ejecuta la aplicación de react que acabamos de descargar y realiza una inyección de todos los eventos que no existen del lado del servidor, cosas como onClicks, onSubmits, etc... 
+
+    4.- Por ultimo ya luego de que todo nuestro sitio es totalmente interactivo y nuestro usuario puede interactuar sin problemas.
+
+  Ahora, por que renderizar desde el servidor, mas alla de darle un feedback al usuario: 
+
+    1.- Nuestro sitio carga mucho mas rapido
+    2.- Mejora el SEO ya que todo el contenido que se esta enviando de manera pre-renderizada es 100% indexable por cualquier motor de busqueda.
+    3.- Le da una mejor apariencia al usuario, sin pantallas blancas antes de comenzar o loaders que dan la sensación de un sitio lento. 
 
 ## Update de dependencias en npm 
   
