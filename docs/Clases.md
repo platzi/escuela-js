@@ -23,9 +23,13 @@
   Hola, bienvenido al curso de Server Side Rendering con Express de la escuela de Javascript de Platzi, a lo largo de toda la escuela de javascript aprendiste un monton de cosas que van a asegurar tu futuro como profesional, cosas como:
 
   1.- Configurar tu entorno de desarrollo
+
   2.- Maquetación y buenas practicas al momento de hacer CSS
+
   3.- Fundamentos y Javascript Avanzado
+
   4.- ReactJS, Redux y  React Router
+
   5.- Node.js y autenticación con Passport.js
 
   Ahora, es momento de que profundicemos un poco en el Frontend y apliquemos una estrategia que va a hacer que la experiencia de tus usarios se incremente exponencialmente.
@@ -35,7 +39,9 @@
   En este curso aprenderas cosas como: 
 
   1.- Server tu aplicacion de ReactJS con Express
+
   2.- Preparar tu aplicación para producción
+
   3.- Generar y usar un manifest de los assets de tu aplicación
 
   Para este curso debes tener en cuenta que debido a que vamos a estar realizando diversas configuraciones, estas mismas pueden llegar a ser un poco extensas y en algun punto mientras desconectamos algo y lo conectamos de vuelta a nuestro servidor de express pueden verse errores en pantalla. 
@@ -46,14 +52,13 @@
 
   Para poder avanzar rapidamente y no quedarte estancado en ciertos temas del curso te recomiendo que sepas dominar:
 
-  1.- Node.js
-    Ya que estaremos usando express para poder servir nuestra aplicación
-  2.- Webpack
-    Por que estaremos aplicando y mejorando ciertas configuraciones desde express y desde el archivo de configuración de webpack.
-  3.- React.js
-    Debido a que nuestra aplicación esta en React, es importante tener el contexto de lo que hicimos en cursos anteriores o al menos revisar el proyecto del curso de React, React Router y Redux.
-  4.- Terminal 
-    Manejar la terminal es muy importante, no estaremos haciendo fuera    de lo normal en la terminal, pero si es indispensable conocer los     comandos basicos y manejarse entre directorios.
+  1.- Node.js: Ya que estaremos usando express para poder servir nuestra aplicación
+
+  2.- Webpack Por que estaremos aplicando y mejorando ciertas configuraciones desde express y desde el archivo de configuración de webpack.
+
+  3.- React.js: Debido a que nuestra aplicación esta en React, es importante tener el contexto de lo que hicimos en cursos anteriores o al menos revisar el proyecto del curso de React, React Router y Redux.
+
+  4.- Terminal Manejar la terminal es muy importante, no estaremos haciendo fuera    de lo normal en la terminal, pero si es indispensable conocer los     comandos basicos y manejarse entre directorios.
 
 ## Presentación del proyecto del curso 
 
