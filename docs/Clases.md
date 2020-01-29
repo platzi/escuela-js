@@ -771,3 +771,103 @@ const mainBuild = manifest ? manifest['main.js'] : '/assets/app.js';
 ```
 
 Y en el html: `${mainStyles}` y `${mainBuild}`
+
+## Como implementar Next.js
+
+En el mundo de React existen multiples herramientas que nos ayudaran a crear una aplicacion de manera rapida y sencilla, en esta clase aprenderas a crear un proyecto base hecho con Next.js
+
+Next.js es un framework de react y su principal caracteristica es que es Server Side Render First. Es decir, toda nuestra aplicacion va a correr con SSR por defecto con la configuracion por defecto.
+
+Para comenzar crearemos una carpeta llamada `nextjs` en nuestro root y luego, siguiendo la documentacion vamos a instalar 3 dependencias para poder cumplir nuestro objetivo.
+
+`npm install --save next react react-dom`
+
+Luego vamos a nuestro package.json y crearemos 3 scripts
+
+```
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+```
+
+Como podemos ver, estos scripts se refieren a correr nuestra aplicacion en desarrollo, construir el buid de la misma y ejecutar la aplicacion para produccion.
+
+Ahora, si queremos crear nuestra pagina de hola next.js vamos a crear una carpeta llamada `pages` y aqui adentro crearemos las paginas de nuestras vistas, por ejemplo, si creamos una pagina llamada `index.js` estaremos creando la ruta del home. 
+
+Procedemos a escribir un componente funcional para servir nuestra ruta. 
+
+```
+  import React from 'react';
+
+  const Index = () => {
+    return (
+      <div>
+        Hola Next.js
+      </div>
+    );
+  };
+
+  export default Index;
+
+```
+
+Y ahora, vamos a nuestra terminal a verificar que todo esta funcionando bien ejecutando el comando:
+
+`npm run dev`
+
+Podemos ver que se renderiza nuesta pagina y si vamos a constatarnos de que este usando SSR desabilitamos le javascript y LISTO!! 
+
+Ya tenemos una aplicacion con SSR de manera rapida y sencilla.
+
+Si quieres saber mas acerca de Next.js y las capacidades que te provee este poderoso framework te invito a revisar la documentacion del mismo.
+
+## Como usar Gatsby.js
+
+Otra herramienta realmente poderosa es Gatsby.js, es otro framework de React que te va a permitir crear aplicaciones de manera super rapida y con un gran apoyo de la comunidad.
+
+De kas ventajas que tiene Gatsby.js es la cantidad de Boilerplates y presets que provee para cualquier tipo de aplicacion, desde blogs hasta landing pages. 
+
+Para poder iniciar un proyecto de gatsby vamos a instalar un paquete global.
+
+`npm install -g gatsby-cli`
+
+Una vez instalada la dependencia procedemos a crear un nuevo proyecto de gatsby con:
+
+`gatsby new gatsby-site`
+
+Podemos ver que nos da a elegir el gestor de paquetes, vamos a elegir *npm*
+
+Esperamos a que instale todo lo necesario...
+
+Y una vez finalizado podemos ver que nos da dos instrucciones. 
+```
+  cd gatsby-site
+  gatsby develop
+```
+
+Una vez ejecutado el comando de desarrollo, podemos observar que automaticamente crea un proyecto base con todo lo necesario para comenzar a progamar.
+
+Si vemos la estructura del mismo nos genera varios archivos de configuracion, entre los cuales esta uno para configurar el SSR, tambien para manejar node y conectarse con GraphQL y si vamos a la seccion de paginas encontraremos paginas de ejemplo para poder trabajar rapida y eficientemente.
+
+## Cuando usar cada una de las herramientas presentadas
+
+Cada herramienta, tiene sus pro y sus contras, pero mas alla de profundizar sobre los beneficios de las 3, hay que tener en cuenta varias cosas para saber que y cuando usar cada una. 
+
+1.- El alcance del proyecto
+  No sabemos que tanto va a crecer el proyecto y el tiempo que tendremos para entregarlo y la cantidad de configuraciones y modificaciones que planeamos implementar.
+
+2.- El objetivo del mismo
+  Si es un proyecto que queremos usar para un blog propio o es algo para un cliente es muy importante tener claros los objetivos para saber que tanto va a escalar y como debemos manejar el entorno de produccion. 
+
+3.- El tiempo de entrega 
+  Como ya mencionamos antes, el tiempo de entrega es sumamente importante al momento de decidir la herramiente que usaremos. Si queremos usar algo rapido para una entrega veloz o si podemos trabajar artesanalmente, configurar y tener el control de absolutamente cada pedazo de codigo
+
+4.-  Entorno de produccion
+
+  Hay casos en los que el entorno de produccion marca la diferencia, todo depende de si vamos a hospedar nuestro proyecto en gihub pages, next o en un servidor personalizado. En estos casos cada una de las herramientas te provee herramientas de despliegue. 
+
+  .- Gatsby es extremadamente util si quieres servir algo en github pages de manera rapida
+  .- Next tiene su propio servicio para desplegar aplicaciones de manera sencilla y gratuita.
+  .- Y como ya veremos en modulos siguientes, configurar y personalizar webpack y express para poder mantener el control de todo tu entorno proveen configuraciones sencillas para realizar dicho despliegue.
