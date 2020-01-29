@@ -42,9 +42,9 @@ if (ENV === 'development') {
 const setResponse = (html, preloadedState, manifest) => {
   const mainStyles = manifest ? manifest['main.css'] : '/assets/app.css';
   const mainBuild = manifest ? manifest['main.js'] : '/assets/app.js';
+  const vendor = manifest ? manifest['vendors.js'] : '/assets/vendor.js';
 
-  return (
-    `
+  return `
       <!DOCTYPE html>
       <html lang="es">
         <head>
@@ -58,12 +58,14 @@ const setResponse = (html, preloadedState, manifest) => {
         <body>
           <div id="app">${html}</div>
           <script id="preloadedState">
-            window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
+            window.__PRELOADED_STATE__ = ${JSON.stringify(
+              preloadedState
+            ).replace(/</g, '\\u003c')}
           </script>
           <script src="${mainBuild}" type="text/javascript"></script>
+          <script src="${vendor}" type="text/javascript"></script>
         </body>
-      </html>`
-  );
+      </html>`;
 };
 
 const renderApp = (req, res) => {
@@ -71,9 +73,7 @@ const renderApp = (req, res) => {
   const html = renderToString(
     <Provider store={store}>
       <StaticRouter location={req.url} context={{}}>
-        <Layout>
-          {renderRoutes(serverRoutes)}
-        </Layout>
+        <Layout>{renderRoutes(serverRoutes)}</Layout>
       </StaticRouter>
     </Provider>
   );

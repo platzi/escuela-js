@@ -772,6 +772,77 @@ const mainBuild = manifest ? manifest['main.js'] : '/assets/app.js';
 
 Y en el html: `${mainStyles}` y `${mainBuild}`
 
+## Optimización:  usando Plugins y vendor file en Webpack
+
+Ya que tenemos nuestro bundle con hashes y tenemos todo un proceso definido para cargarlos, vamos a aplicar una estrategia para separar nuestro bundle en dos. 
+
+Por que? Por que va a permitir que el navegador cachee aquello que no cambia tan a menudo: *Las dependencias* y asi podremos hacer cambios en frontend sin que nuestros usuarios tengan que descargar constantemente los mismos archivos. 
+
+Debemos hacer ciertos cambios en nuestra configuración de webpack, estos seran en un nuevo apartado llamado optimization.
+
+```
+  optimization: {
+    splitChunks: {
+      chunks: 'async',
+      name: true,
+      cacheGroups: {
+        vendors: {
+          name: 'vendors',
+          chunks: 'all',
+          reuseExistingChunk: true,
+          priority: 1,
+          filename: isDev ? 'assets/vendor.js' : 'assets/vendor-[hash].js',
+          enforce: true,
+          test(module, chunks) {
+            const name = module.nameForCondition && module.nameForCondition();
+            return chunks.some(chunk => chunk.name !== 'vendors' && /[\\/]node_modules[\\/]/.test(name));
+          },
+        },
+      },
+    },
+  },
+```
+
+Luego de esto, debemos ir a nuestro archivo de `server.js` y cargar este nuevo archivo que estamos cargando.
+
+`const vendor = manifest ? manifest['vendors.js'] : '/assets/vendor.js';`
+
+Y con esta ultima instrucción podremos tener un build mucho mas limpio y libre de dependencias.
+
+Probemos en nuestro navegador que todo este corriendo bien, y como puedes ver el vendor file esta siendo llamado.
+
+## Configuración de Eslint con Webpack  
+
+Si revisamos nuestro proyecto a fondo, vamos a encontrarnos con que hay muchas inconsistencias en la forma en la que codeamos y en la que la configuración de eslint tiene definida.
+
+Para que nuestro proyecto sea escalable es muy importante llevar esta consistencia a diario y evitar que nuestro codigo use malas practicas.
+
+Aqui es donde entra *.eslint*, el busca, encuentra y arregla problemas, y la verdad tambien nos hace la vida mucho mas facil.
+
+Para configurar *eslint* en nuestro proyecto, vamos a instalar unas cuantas dependencias para desarrollo.
+
+`npm install eslint eslint-loader --save-dev`
+
+Luego, vamos a nuestro webpack config y agregaremos la siguiente regla:
+
+```
+  {
+    enforce: 'pre',
+    test: /\.(js|jsx)$/,
+    exclude: /node_modules/,
+    loader: 'eslint-loader'
+  },
+```
+
+Pero, como podremos ver nos esta lanzando un monton de errores, debido a que este loader solo nos indica los errores mas no los arregla. 
+
+Hay que tener en cuenta que *eslint* solo arregla ciertos errores y el resto los deja a discresión del desarrollador. Procedemos a crear un nuevo comando en nuestros scripts del `package.json`
+
+`"lint": "eslint src/** --ext .jsx --ext .js --fix",`
+
+Ejecutamos nuestro comando y podremos ver que la gran mayoria de errores fueron arreglados, pero tambien nos indica aquellos que no.
+
+
 ## Como implementar Next.js
 
 En el mundo de React existen multiples herramientas que nos ayudaran a crear una aplicacion de manera rapida y sencilla, en esta clase aprenderas a crear un proyecto base hecho con Next.js
